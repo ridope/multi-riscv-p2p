@@ -1,0 +1,41 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "user_led0",
+					"strict" : false
+				},
+				{
+					"name" : "user_led1",
+					"strict" : false
+				},
+				{
+					"name" : "user_led2",
+					"strict" : false
+				},
+				{
+					"name" : "user_led3",
+					"strict" : false
+				},
+				{
+					"name" : "user_sw0",
+					"strict" : false
+				},
+				{
+					"name" : "user_sw1",
+					"strict" : false
+				},
+				{
+					"name" : "user_sw2",
+					"strict" : false
+				},
+				{
+					"name" : "user_sw3",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
