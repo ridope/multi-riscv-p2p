@@ -1,0 +1,8 @@
+set_global_assignment -name DEVICE 10M50DAF484C7G
+set_global_assignment -name SYSTEMVERILOG_FILE /home/alexandre/multi-riscv-p2p/lab/build/top.v -library work
+set_global_assignment -name top_level_entity top
+set_location_assignment -comment "user_led:0" -to user_led Pin_A8
+set_instance_assignment -name io_standard -comment "user_led:0" "3.3-V LVTTL" -to user_led
+set_location_assignment -comment "clk50:0" -to clk50 Pin_N14
+set_instance_assignment -name io_standard -comment "clk50:0" "3.3-V LVTTL" -to clk50
+set_global_assignment -name SDC_FILE top.sdc
