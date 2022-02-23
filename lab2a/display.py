@@ -36,6 +36,12 @@ class SevenSegment(Module):
           0x7: abcdefg.eq(0b0000111),
           0x8: abcdefg.eq(0b1111111),
           0x9: abcdefg.eq(0b1101111),
+		  0xa: abcdefg.eq(0b1110111),
+          0xb: abcdefg.eq(0b1111100),
+          0xc: abcdefg.eq(0b0111001),
+          0xd: abcdefg.eq(0b1011110),
+          0xe: abcdefg.eq(0b1111001),
+          0xf: abcdefg.eq(0b1110001),
         }
 
         # Combinatorial assignement
@@ -98,7 +104,7 @@ if __name__ == '__main__':
     dut = SevenSegmentDisplay(100e6, 0.000001)
     def dut_tb(dut):
         for i in range(2000):
-        	for j in range(9):
+        	for j in range(17):		#simulating all the possible inputs for the abcdef display
         		yield dut.values.eq(j)
         		yield
         	

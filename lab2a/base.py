@@ -34,8 +34,8 @@ _io = [
     ("user_led", 9, Pins("B11"), IOStandard("3.3-V LVTTL")),
 
 	#buttons
-    ("user_btn", 0, Pins("B8"), IOStandard("3.3-V LVTTL")),
-    ("user_btn", 1, Pins("A7"), IOStandard("3.3-V LVTTL")),
+    ("user_btn_1", 0, Pins("B8"), IOStandard("3.3-V LVTTL")),
+    ("user_btn_2", 0, Pins("A7"), IOStandard("3.3-V LVTTL")),
 
 	#user switchs
     ("user_sw", 0, Pins("C10"), IOStandard("3.3-V LVTTL")),
@@ -43,12 +43,12 @@ _io = [
     ("user_sw", 2, Pins("D12"), IOStandard("3.3-V LVTTL")),
 
 	#7 seg display  
- 	("seven_seg", 0, Pins("C14 E15 C15 C16 E16 D17 C17 D15"), IOStandard("3.3-V LVTTL")),
-    ("seven_seg", 1, Pins("C18 D18 E18 B16 A17 A18 B17 A16"), IOStandard("3.3-V LVTTL")),
-    ("seven_seg", 2, Pins("B20 A20 B19 A21 B21 C22 B22 A19"), IOStandard("3.3-V LVTTL")),
-    ("seven_seg", 3, Pins("F21 E22 E21 C19 C20 D19 E17 D22"), IOStandard("3.3-V LVTTL")),
-    ("seven_seg", 4, Pins("F18 E20 E19 J18 H19 F19 F20 F17"), IOStandard("3.3-V LVTTL")),
-    ("seven_seg", 5, Pins("J20 K20 L18 N18 M20 N19 N20 L19"), IOStandard("3.3-V LVTTL")),
+    ("display_1", 0, Pins("C14 E15 C15 C16 E16 D17 C17 D15"), IOStandard("3.3-V LVTTL")),
+    ("display_2", 0, Pins("C18 D18 E18 B16 A17 A18 B17 A16"), IOStandard("3.3-V LVTTL")),
+    ("display_3", 0, Pins("B20 A20 B19 A21 B21 C22 B22 A19"), IOStandard("3.3-V LVTTL")),
+    ("display_4", 0, Pins("F21 E22 E21 C19 C20 D19 E17 D22"), IOStandard("3.3-V LVTTL")),
+    ("display_5", 0, Pins("F18 E20 E19 J18 H19 F19 F20 F17"), IOStandard("3.3-V LVTTL")),
+    ("display_6", 0, Pins("J20 K20 L18 N18 M20 N19 N20 L19"), IOStandard("3.3-V LVTTL")),
     
 ]
 
@@ -97,14 +97,26 @@ class Clock(Module):
         self.submodules += tick
         
         # SevenSegmentDisplay
+        display = SevenSegmentDisplay()
+        self.submodules += display
 
         # Core : counts ss/mm/hh
+        core = Core()
+        self.submodules += core
 
         # set mm/hh
+        button1 = UserButtonPress(platform.request("user_btn_1"))
+        button2 = UserButtonPress(platform.request("user_btn_2"))
+        self.submodules += button1, button2
 
         # Binary Coded Decimal: convert ss/mm/hh to decimal values
+        bcd_seconds = _BCD()
+        bcd_minutes = _BCD()
+        bcd_hours = _BCD()
+        self.submodules += bcd_seconds, bcd_minutes, bcd_hours
 
         # use the generated verilog file
+        platform.add_source("bcd.v")
 
 
 	# syncronous assignement
@@ -115,19 +127,33 @@ class Clock(Module):
         # combinatorial assignement
         self.comb += [
             # Connect tick to core (core timebase)
-
+            core.tick.eq(tick.ce),
+		
             # Set minutes/hours
-
+			core.inc_minutes.eq(button1.rising),
+			core.inc_hours.eq(button2.rising),
             # Convert core seconds to bcd and connect
             # to display
+            bcd_seconds.value.eq(core.seconds),
+			display1.values.eq(bcd_seconds.ones),
+            display2.values.eq(bcd_seconds.tens),
 
             # Convert core minutes to bcd and connect
             # to display
-
+			bcd_minutes.value.eq(core.minutes),
+			display3.values.eq(bcd_minutes.ones),
+            display4.values.eq(bcd_minutes.tens),
             # Convert core hours to bcd and connect
             # to display
+            bcd_hours.value.eq(core.hours),
+            display5.values.eq(bcd_hours.ones),
+            display6.values.eq(bcd_hours.tens),
 
             # Connect display to pads
+            
+            platform.request("display_1").eq(~display.abcdefg)
+            
+            
         ]
         
         led1 = platform.request("user_led",0)
