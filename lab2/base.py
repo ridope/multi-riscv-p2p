@@ -90,7 +90,7 @@ platform = Platform()
 class Clock(Module):
     sys_clk_freq = int(100e6)
     def __init__(self):
-        # Tick generation : timebase
+        # Importing tick as submodule and configuring it to generate a 1Hz pulse
         tick = Tick(self.sys_clk_freq, 1)
         self.submodules += tick
 
