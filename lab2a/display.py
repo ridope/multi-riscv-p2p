@@ -62,41 +62,11 @@ class SevenSegmentDisplay(Module):
         # Create a tick every cs_period
         self.submodules.tick = Tick(sys_clk_freq, cs_period)
 
-        # Rotate cs 6 bits signals to alternate seven segments
-		# cycle 0 : 0b000001
-	    # cycle 1 : 0b000010
-	    # cycle 2 : 0b000100
-	    # cycle 3 : 0b001000
-	    # cycle 4 : 0b010000
-	    # cycle 5 : 0b010000
-	    # cycle 6 : 0b100000
-		# cycle 7 : 0b000001
-        cs = Signal(6, reset=0b000001)
         # Synchronous assigment
         self.sync += [
-            If(self.tick.ce,
-                # -- TO BE COMPLETED --
-                # [...] rotate cs
-                # -- TO BE COMPLETED --
-            )
+        # Using clock to activate the seven segment display
+            If(self.tick.ce, seven_segment.value.eq(self.values)) 
         ]
-        # Combinatorial assigment
-        self.comb += self.cs.eq(cs)
-
-        # cs to value selection.
-        # Here we create a table to translate each of the 8 cs possible values
-        # to input value selection.
-        # -- TO BE COMPLETED --
-        
-        # using the cs to change the display
-        
-        cases = {
-            0b000001 : seven_segment.value.eq(self.values[0]),
-            # [...]
-        }
-        # -- TO BE COMPLETED --
-        # Combinatorial assigment
-        self.comb += seven_segment.value.eq(self.values[0])   #changed
  
 # Main ---------------------------------------------------------------------------------------------
 
@@ -116,7 +86,7 @@ if __name__ == '__main__':
         print(line1[edc])
 
     def dut_tb(dut):
-        for i in range(16):
+        for i in range(300):
             yield dut.value.eq(i)
             yield
             show_seven_segment((yield dut.abcdefg))
@@ -127,9 +97,9 @@ if __name__ == '__main__':
     print("SevenSegmentDisplay simulation")
     dut = SevenSegmentDisplay(100e6, 0.000001)
     def dut_tb(dut):
-        for i in range(4096):
-            for j in range(6):
-                yield dut.values[j].eq(i + j)
-            yield
-
+        for i in range(2000):
+        	for j in range(9):
+        		yield dut.values.eq(j)
+        		yield
+        	
     run_simulation(dut, dut_tb(dut), vcd_name="display.vcd")
