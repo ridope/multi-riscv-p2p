@@ -28,7 +28,7 @@ class Core(Module):
 
         # Set interface
         self.inc_minutes = Signal() # input
-        self.inc_hours = Signal()   # output
+        self.inc_hours = Signal()   # input
 
         # # #
 

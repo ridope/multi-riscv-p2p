@@ -97,8 +97,13 @@ class Clock(Module):
         self.submodules += tick
         
         # SevenSegmentDisplay
-        display = SevenSegmentDisplay()
-        self.submodules += display
+        display1 = SevenSegmentDisplay(self.sys_clk_freq)
+        display2 = SevenSegmentDisplay(self.sys_clk_freq)
+        display3 = SevenSegmentDisplay(self.sys_clk_freq)
+        display4 = SevenSegmentDisplay(self.sys_clk_freq)
+        display5 = SevenSegmentDisplay(self.sys_clk_freq)
+        display6 = SevenSegmentDisplay(self.sys_clk_freq)
+        self.submodules += display1, display2, display3, display4, display5, display6
 
         # Core : counts ss/mm/hh
         core = Core()
@@ -110,38 +115,34 @@ class Clock(Module):
         self.submodules += button1, button2
 
         # Binary Coded Decimal: convert ss/mm/hh to decimal values
-        bcd_seconds = _BCD()
-        bcd_minutes = _BCD()
-        bcd_hours = _BCD()
+        bcd_seconds = BCD()
+        bcd_minutes = BCD()
+        bcd_hours = BCD()
         self.submodules += bcd_seconds, bcd_minutes, bcd_hours
 
         # use the generated verilog file
         platform.add_source("bcd.v")
-
-
-	# syncronous assignement
-	self.sync += [
-	
-	
-	]
+        
+        # syncronous assignement
+        self.sync += []
         # combinatorial assignement
         self.comb += [
             # Connect tick to core (core timebase)
             core.tick.eq(tick.ce),
 		
             # Set minutes/hours
-			core.inc_minutes.eq(button1.rising),
-			core.inc_hours.eq(button2.rising),
+            core.inc_minutes.eq(button1.rising),
+            core.inc_hours.eq(button2.rising),
             # Convert core seconds to bcd and connect
             # to display
             bcd_seconds.value.eq(core.seconds),
-			display1.values.eq(bcd_seconds.ones),
+            display1.values.eq(bcd_seconds.ones),
             display2.values.eq(bcd_seconds.tens),
 
             # Convert core minutes to bcd and connect
             # to display
-			bcd_minutes.value.eq(core.minutes),
-			display3.values.eq(bcd_minutes.ones),
+            bcd_minutes.value.eq(core.minutes),
+            display3.values.eq(bcd_minutes.ones),
             display4.values.eq(bcd_minutes.tens),
             # Convert core hours to bcd and connect
             # to display
@@ -151,12 +152,15 @@ class Clock(Module):
 
             # Connect display to pads
             
-            platform.request("display_1").eq(~display.abcdefg)
+            platform.request("display_1").eq(~display1.abcdefg),
+            platform.request("display_2").eq(~display2.abcdefg),
+            platform.request("display_3").eq(~display3.abcdefg),
+            platform.request("display_4").eq(~display4.abcdefg),
+            platform.request("display_5").eq(~display5.abcdefg),
+            platform.request("display_6").eq(~display6.abcdefg)
             
             
         ]
-        
-        led1 = platform.request("user_led",0)
         
         # -- TO BE COMPLETED --
 

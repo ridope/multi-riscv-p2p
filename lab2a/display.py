@@ -36,7 +36,7 @@ class SevenSegment(Module):
           0x7: abcdefg.eq(0b0000111),
           0x8: abcdefg.eq(0b1111111),
           0x9: abcdefg.eq(0b1101111),
-		  0xa: abcdefg.eq(0b1110111),
+          0xa: abcdefg.eq(0b1110111),
           0xb: abcdefg.eq(0b1111100),
           0xc: abcdefg.eq(0b0111001),
           0xd: abcdefg.eq(0b1011110),
@@ -51,14 +51,9 @@ class SevenSegment(Module):
 
 class SevenSegmentDisplay(Module):
     def __init__(self, sys_clk_freq, cs_period=0.001):
-        # Module's interface
-        # self.values = Array(Signal(5) for i in range(6))  -> 6 arrays of Signal(5) for the BCD display?
-        
-        self.values = Signal(5)  # input
-        
+        # Module's interface     
+        self.values = Signal(4)  # input        
         self.abcdefg = Signal(7) # output
-
-        # # #
 
         # Create our seven segment controller
         seven_segment = SevenSegment()
@@ -103,9 +98,9 @@ if __name__ == '__main__':
     print("SevenSegmentDisplay simulation")
     dut = SevenSegmentDisplay(100e6, 0.000001)
     def dut_tb(dut):
-        for i in range(2000):
-        	for j in range(17):		#simulating all the possible inputs for the abcdef display
-        		yield dut.values.eq(j)
-        		yield
+    	for i in range(2000):
+    		for j in range(17):
+    			yield dut.values.eq(j)
+    			yield
         	
     run_simulation(dut, dut_tb(dut), vcd_name="display.vcd")
