@@ -1,0 +1,158 @@
+set_global_assignment -name DEVICE 10M50DAF484C7G
+set_global_assignment -name SYSTEMVERILOG_FILE /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top2.v -library work
+set_global_assignment -name top_level_entity top2
+set_location_assignment -comment "clk50:0" -to clk50 Pin_N14
+set_instance_assignment -name io_standard -comment "clk50:0" "3.3-V LVTTL" -to clk50
+set_location_assignment -comment "cpu_reset:0" -to cpu_reset Pin_A7
+set_instance_assignment -name io_standard -comment "cpu_reset:0" "3.3-V LVTTL" -to cpu_reset
+set_location_assignment -comment "serial:0.tx" -to serial_tx Pin_V10
+set_instance_assignment -name io_standard -comment "serial:0.tx" "3.3-V LVTTL" -to serial_tx
+set_location_assignment -comment "serial:0.rx" -to serial_rx Pin_W10
+set_instance_assignment -name io_standard -comment "serial:0.rx" "3.3-V LVTTL" -to serial_rx
+set_location_assignment -comment "user_led:0" -to user_led0 Pin_A8
+set_instance_assignment -name io_standard -comment "user_led:0" "3.3-V LVTTL" -to user_led0
+set_location_assignment -comment "user_led:1" -to user_led1 Pin_A9
+set_instance_assignment -name io_standard -comment "user_led:1" "3.3-V LVTTL" -to user_led1
+set_location_assignment -comment "user_led:2" -to user_led2 Pin_A10
+set_instance_assignment -name io_standard -comment "user_led:2" "3.3-V LVTTL" -to user_led2
+set_location_assignment -comment "user_led:3" -to user_led3 Pin_B10
+set_instance_assignment -name io_standard -comment "user_led:3" "3.3-V LVTTL" -to user_led3
+set_location_assignment -comment "user_led:4" -to user_led4 Pin_D13
+set_instance_assignment -name io_standard -comment "user_led:4" "3.3-V LVTTL" -to user_led4
+set_location_assignment -comment "user_led:5" -to user_led5 Pin_C13
+set_instance_assignment -name io_standard -comment "user_led:5" "3.3-V LVTTL" -to user_led5
+set_location_assignment -comment "user_led:6" -to user_led6 Pin_E14
+set_instance_assignment -name io_standard -comment "user_led:6" "3.3-V LVTTL" -to user_led6
+set_location_assignment -comment "user_led:7" -to user_led7 Pin_D14
+set_instance_assignment -name io_standard -comment "user_led:7" "3.3-V LVTTL" -to user_led7
+set_location_assignment -comment "user_led:8" -to user_led8 Pin_A11
+set_instance_assignment -name io_standard -comment "user_led:8" "3.3-V LVTTL" -to user_led8
+set_location_assignment -comment "user_led:9" -to user_led9 Pin_B11
+set_instance_assignment -name io_standard -comment "user_led:9" "3.3-V LVTTL" -to user_led9
+set_location_assignment -comment "user_sw:0" -to user_sw0 Pin_C10
+set_instance_assignment -name io_standard -comment "user_sw:0" "3.3-V LVTTL" -to user_sw0
+set_location_assignment -comment "user_sw:1" -to user_sw1 Pin_C11
+set_instance_assignment -name io_standard -comment "user_sw:1" "3.3-V LVTTL" -to user_sw1
+set_location_assignment -comment "user_sw:2" -to user_sw2 Pin_D12
+set_instance_assignment -name io_standard -comment "user_sw:2" "3.3-V LVTTL" -to user_sw2
+set_location_assignment -comment "user_sw:3" -to user_sw3 Pin_C12
+set_instance_assignment -name io_standard -comment "user_sw:3" "3.3-V LVTTL" -to user_sw3
+set_location_assignment -comment "user_sw:4" -to user_sw4 Pin_A12
+set_instance_assignment -name io_standard -comment "user_sw:4" "3.3-V LVTTL" -to user_sw4
+set_location_assignment -comment "user_sw:5" -to user_sw5 Pin_B12
+set_instance_assignment -name io_standard -comment "user_sw:5" "3.3-V LVTTL" -to user_sw5
+set_location_assignment -comment "user_sw:6" -to user_sw6 Pin_A13
+set_instance_assignment -name io_standard -comment "user_sw:6" "3.3-V LVTTL" -to user_sw6
+set_location_assignment -comment "user_sw:7" -to user_sw7 Pin_A14
+set_instance_assignment -name io_standard -comment "user_sw:7" "3.3-V LVTTL" -to user_sw7
+set_location_assignment -comment "user_sw:8" -to user_sw8 Pin_B14
+set_instance_assignment -name io_standard -comment "user_sw:8" "3.3-V LVTTL" -to user_sw8
+set_location_assignment -comment "user_sw:9" -to user_sw9 Pin_F15
+set_instance_assignment -name io_standard -comment "user_sw:9" "3.3-V LVTTL" -to user_sw9
+set_location_assignment -comment "user_btn_1:0" -to user_btn_1 Pin_B8
+set_instance_assignment -name io_standard -comment "user_btn_1:0" "3.3-V LVTTL" -to user_btn_1
+set_location_assignment -comment "de10lite_acc:0.cs_n" -to de10lite_acc_cs_n Pin_AB16
+set_instance_assignment -name io_standard -comment "de10lite_acc:0.cs_n" "3.3-V LVTTL" -to de10lite_acc_cs_n
+set_location_assignment -comment "de10lite_acc:0.clk" -to de10lite_acc_clk Pin_AB15
+set_instance_assignment -name io_standard -comment "de10lite_acc:0.clk" "3.3-V LVTTL" -to de10lite_acc_clk
+set_location_assignment -comment "de10lite_acc:0.mosi" -to de10lite_acc_mosi Pin_V11
+set_instance_assignment -name io_standard -comment "de10lite_acc:0.mosi" "3.3-V LVTTL" -to de10lite_acc_mosi
+set_location_assignment -comment "de10lite_acc:0.miso" -to de10lite_acc_miso Pin_V12
+set_instance_assignment -name io_standard -comment "de10lite_acc:0.miso" "3.3-V LVTTL" -to de10lite_acc_miso
+set_location_assignment -comment "display_1:0" -to display_1[0] Pin_C14
+set_instance_assignment -name io_standard -comment "display_1:0" "3.3-V LVTTL" -to display_1[0]
+set_location_assignment -comment "display_1:0" -to display_1[1] Pin_E15
+set_instance_assignment -name io_standard -comment "display_1:0" "3.3-V LVTTL" -to display_1[1]
+set_location_assignment -comment "display_1:0" -to display_1[2] Pin_C15
+set_instance_assignment -name io_standard -comment "display_1:0" "3.3-V LVTTL" -to display_1[2]
+set_location_assignment -comment "display_1:0" -to display_1[3] Pin_C16
+set_instance_assignment -name io_standard -comment "display_1:0" "3.3-V LVTTL" -to display_1[3]
+set_location_assignment -comment "display_1:0" -to display_1[4] Pin_E16
+set_instance_assignment -name io_standard -comment "display_1:0" "3.3-V LVTTL" -to display_1[4]
+set_location_assignment -comment "display_1:0" -to display_1[5] Pin_D17
+set_instance_assignment -name io_standard -comment "display_1:0" "3.3-V LVTTL" -to display_1[5]
+set_location_assignment -comment "display_1:0" -to display_1[6] Pin_C17
+set_instance_assignment -name io_standard -comment "display_1:0" "3.3-V LVTTL" -to display_1[6]
+set_location_assignment -comment "display_1:0" -to display_1[7] Pin_D15
+set_instance_assignment -name io_standard -comment "display_1:0" "3.3-V LVTTL" -to display_1[7]
+set_location_assignment -comment "display_2:0" -to display_2[0] Pin_C18
+set_instance_assignment -name io_standard -comment "display_2:0" "3.3-V LVTTL" -to display_2[0]
+set_location_assignment -comment "display_2:0" -to display_2[1] Pin_D18
+set_instance_assignment -name io_standard -comment "display_2:0" "3.3-V LVTTL" -to display_2[1]
+set_location_assignment -comment "display_2:0" -to display_2[2] Pin_E18
+set_instance_assignment -name io_standard -comment "display_2:0" "3.3-V LVTTL" -to display_2[2]
+set_location_assignment -comment "display_2:0" -to display_2[3] Pin_B16
+set_instance_assignment -name io_standard -comment "display_2:0" "3.3-V LVTTL" -to display_2[3]
+set_location_assignment -comment "display_2:0" -to display_2[4] Pin_A17
+set_instance_assignment -name io_standard -comment "display_2:0" "3.3-V LVTTL" -to display_2[4]
+set_location_assignment -comment "display_2:0" -to display_2[5] Pin_A18
+set_instance_assignment -name io_standard -comment "display_2:0" "3.3-V LVTTL" -to display_2[5]
+set_location_assignment -comment "display_2:0" -to display_2[6] Pin_B17
+set_instance_assignment -name io_standard -comment "display_2:0" "3.3-V LVTTL" -to display_2[6]
+set_location_assignment -comment "display_2:0" -to display_2[7] Pin_A16
+set_instance_assignment -name io_standard -comment "display_2:0" "3.3-V LVTTL" -to display_2[7]
+set_location_assignment -comment "display_3:0" -to display_3[0] Pin_B20
+set_instance_assignment -name io_standard -comment "display_3:0" "3.3-V LVTTL" -to display_3[0]
+set_location_assignment -comment "display_3:0" -to display_3[1] Pin_A20
+set_instance_assignment -name io_standard -comment "display_3:0" "3.3-V LVTTL" -to display_3[1]
+set_location_assignment -comment "display_3:0" -to display_3[2] Pin_B19
+set_instance_assignment -name io_standard -comment "display_3:0" "3.3-V LVTTL" -to display_3[2]
+set_location_assignment -comment "display_3:0" -to display_3[3] Pin_A21
+set_instance_assignment -name io_standard -comment "display_3:0" "3.3-V LVTTL" -to display_3[3]
+set_location_assignment -comment "display_3:0" -to display_3[4] Pin_B21
+set_instance_assignment -name io_standard -comment "display_3:0" "3.3-V LVTTL" -to display_3[4]
+set_location_assignment -comment "display_3:0" -to display_3[5] Pin_C22
+set_instance_assignment -name io_standard -comment "display_3:0" "3.3-V LVTTL" -to display_3[5]
+set_location_assignment -comment "display_3:0" -to display_3[6] Pin_B22
+set_instance_assignment -name io_standard -comment "display_3:0" "3.3-V LVTTL" -to display_3[6]
+set_location_assignment -comment "display_3:0" -to display_3[7] Pin_A19
+set_instance_assignment -name io_standard -comment "display_3:0" "3.3-V LVTTL" -to display_3[7]
+set_location_assignment -comment "display_4:0" -to display_4[0] Pin_F21
+set_instance_assignment -name io_standard -comment "display_4:0" "3.3-V LVTTL" -to display_4[0]
+set_location_assignment -comment "display_4:0" -to display_4[1] Pin_E22
+set_instance_assignment -name io_standard -comment "display_4:0" "3.3-V LVTTL" -to display_4[1]
+set_location_assignment -comment "display_4:0" -to display_4[2] Pin_E21
+set_instance_assignment -name io_standard -comment "display_4:0" "3.3-V LVTTL" -to display_4[2]
+set_location_assignment -comment "display_4:0" -to display_4[3] Pin_C19
+set_instance_assignment -name io_standard -comment "display_4:0" "3.3-V LVTTL" -to display_4[3]
+set_location_assignment -comment "display_4:0" -to display_4[4] Pin_C20
+set_instance_assignment -name io_standard -comment "display_4:0" "3.3-V LVTTL" -to display_4[4]
+set_location_assignment -comment "display_4:0" -to display_4[5] Pin_D19
+set_instance_assignment -name io_standard -comment "display_4:0" "3.3-V LVTTL" -to display_4[5]
+set_location_assignment -comment "display_4:0" -to display_4[6] Pin_E17
+set_instance_assignment -name io_standard -comment "display_4:0" "3.3-V LVTTL" -to display_4[6]
+set_location_assignment -comment "display_4:0" -to display_4[7] Pin_D22
+set_instance_assignment -name io_standard -comment "display_4:0" "3.3-V LVTTL" -to display_4[7]
+set_location_assignment -comment "display_5:0" -to display_5[0] Pin_F18
+set_instance_assignment -name io_standard -comment "display_5:0" "3.3-V LVTTL" -to display_5[0]
+set_location_assignment -comment "display_5:0" -to display_5[1] Pin_E20
+set_instance_assignment -name io_standard -comment "display_5:0" "3.3-V LVTTL" -to display_5[1]
+set_location_assignment -comment "display_5:0" -to display_5[2] Pin_E19
+set_instance_assignment -name io_standard -comment "display_5:0" "3.3-V LVTTL" -to display_5[2]
+set_location_assignment -comment "display_5:0" -to display_5[3] Pin_J18
+set_instance_assignment -name io_standard -comment "display_5:0" "3.3-V LVTTL" -to display_5[3]
+set_location_assignment -comment "display_5:0" -to display_5[4] Pin_H19
+set_instance_assignment -name io_standard -comment "display_5:0" "3.3-V LVTTL" -to display_5[4]
+set_location_assignment -comment "display_5:0" -to display_5[5] Pin_F19
+set_instance_assignment -name io_standard -comment "display_5:0" "3.3-V LVTTL" -to display_5[5]
+set_location_assignment -comment "display_5:0" -to display_5[6] Pin_F20
+set_instance_assignment -name io_standard -comment "display_5:0" "3.3-V LVTTL" -to display_5[6]
+set_location_assignment -comment "display_5:0" -to display_5[7] Pin_F17
+set_instance_assignment -name io_standard -comment "display_5:0" "3.3-V LVTTL" -to display_5[7]
+set_location_assignment -comment "display_6:0" -to display_6[0] Pin_J20
+set_instance_assignment -name io_standard -comment "display_6:0" "3.3-V LVTTL" -to display_6[0]
+set_location_assignment -comment "display_6:0" -to display_6[1] Pin_K20
+set_instance_assignment -name io_standard -comment "display_6:0" "3.3-V LVTTL" -to display_6[1]
+set_location_assignment -comment "display_6:0" -to display_6[2] Pin_L18
+set_instance_assignment -name io_standard -comment "display_6:0" "3.3-V LVTTL" -to display_6[2]
+set_location_assignment -comment "display_6:0" -to display_6[3] Pin_N18
+set_instance_assignment -name io_standard -comment "display_6:0" "3.3-V LVTTL" -to display_6[3]
+set_location_assignment -comment "display_6:0" -to display_6[4] Pin_M20
+set_instance_assignment -name io_standard -comment "display_6:0" "3.3-V LVTTL" -to display_6[4]
+set_location_assignment -comment "display_6:0" -to display_6[5] Pin_N19
+set_instance_assignment -name io_standard -comment "display_6:0" "3.3-V LVTTL" -to display_6[5]
+set_location_assignment -comment "display_6:0" -to display_6[6] Pin_N20
+set_instance_assignment -name io_standard -comment "display_6:0" "3.3-V LVTTL" -to display_6[6]
+set_location_assignment -comment "display_6:0" -to display_6[7] Pin_L19
+set_instance_assignment -name io_standard -comment "display_6:0" "3.3-V LVTTL" -to display_6[7]
+set_global_assignment -name SDC_FILE top2.sdc

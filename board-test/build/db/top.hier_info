@@ -1,0 +1,12 @@
+|top
+user_led0 <= user_led0.DB_MAX_OUTPUT_PORT_TYPE
+user_led1 <= user_led0.DB_MAX_OUTPUT_PORT_TYPE
+user_led2 <= user_led2.DB_MAX_OUTPUT_PORT_TYPE
+user_led3 <= user_led2.DB_MAX_OUTPUT_PORT_TYPE
+user_sw0 => user_led0.IN0
+user_sw1 => user_led0.IN1
+user_sw2 => user_led2.IN0
+user_sw3 => user_led2.IN1
+clk50 => ~NO_FANOUT~
+
+

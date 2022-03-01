@@ -1,0 +1,22 @@
+set_global_assignment -name DEVICE 10M50DAF484C7G
+set_global_assignment -name SYSTEMVERILOG_FILE /home/alexandre/multi-riscv-p2p/board-test/build/top.v -library work
+set_global_assignment -name top_level_entity top
+set_location_assignment -comment "user_led:0" -to user_led0 Pin_A8
+set_instance_assignment -name io_standard -comment "user_led:0" "3.3-V LVTTL" -to user_led0
+set_location_assignment -comment "user_led:1" -to user_led1 Pin_A9
+set_instance_assignment -name io_standard -comment "user_led:1" "3.3-V LVTTL" -to user_led1
+set_location_assignment -comment "user_led:2" -to user_led2 Pin_A10
+set_instance_assignment -name io_standard -comment "user_led:2" "3.3-V LVTTL" -to user_led2
+set_location_assignment -comment "user_led:3" -to user_led3 Pin_B10
+set_instance_assignment -name io_standard -comment "user_led:3" "3.3-V LVTTL" -to user_led3
+set_location_assignment -comment "user_sw:0" -to user_sw0 Pin_C10
+set_instance_assignment -name io_standard -comment "user_sw:0" "3.3-V LVTTL" -to user_sw0
+set_location_assignment -comment "user_sw:1" -to user_sw1 Pin_C11
+set_instance_assignment -name io_standard -comment "user_sw:1" "3.3-V LVTTL" -to user_sw1
+set_location_assignment -comment "user_sw:2" -to user_sw2 Pin_D12
+set_instance_assignment -name io_standard -comment "user_sw:2" "3.3-V LVTTL" -to user_sw2
+set_location_assignment -comment "user_sw:3" -to user_sw3 Pin_C12
+set_instance_assignment -name io_standard -comment "user_sw:3" "3.3-V LVTTL" -to user_sw3
+set_location_assignment -comment "clk50:0" -to clk50 Pin_N14
+set_instance_assignment -name io_standard -comment "clk50:0" "3.3-V LVTTL" -to clk50
+set_global_assignment -name SDC_FILE top.sdc
