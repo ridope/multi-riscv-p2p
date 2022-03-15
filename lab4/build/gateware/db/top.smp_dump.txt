@@ -1,0 +1,7 @@
+
+State Machine - |top|builder_subfragments_state
+Name builder_subfragments_state.11 builder_subfragments_state.10 builder_subfragments_state.01 builder_subfragments_state.00 
+builder_subfragments_state.00 0 0 0 0 
+builder_subfragments_state.01 0 0 1 1 
+builder_subfragments_state.10 0 1 0 1 
+builder_subfragments_state.11 1 0 0 1 
