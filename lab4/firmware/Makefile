@@ -20,8 +20,11 @@ firmware.elf: $(OBJECTS)
 		-N -o $@ \
 		 $(BUILD_DIR)/software/bios/crt0.o \
 		$(OBJECTS) \
+		$(PACKAGES:%=-L$(BUILD_DIR)/software/%) \
 		-L$(BUILD_DIR)/software/libbase \
 		-L$(BUILD_DIR)/software/libcompiler_rt \
+		$(LIBS:lib%=-l%) \
+		-lbase -lcompiler_rt -lgcc
 	chmod -x $@
 
 main.o: main.c
