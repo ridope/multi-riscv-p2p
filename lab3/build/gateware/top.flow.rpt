@@ -1,5 +1,5 @@
 Flow report for top
-Tue Mar  1 20:23:04 2022
+Tue Mar 15 18:39:19 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,18 +40,18 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Tue Mar  1 20:22:57 2022       ;
+; Flow Status                        ; Successful - Tue Mar 15 18:39:10 2022       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; top                                         ;
 ; Top-level Entity Name              ; top                                         ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C7G                              ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 923 / 49,760 ( 2 % )                        ;
-;     Total combinational functions  ; 849 / 49,760 ( 2 % )                        ;
-;     Dedicated logic registers      ; 554 / 49,760 ( 1 % )                        ;
-; Total registers                    ; 554                                         ;
-; Total pins                         ; 77 / 360 ( 21 % )                           ;
+; Total logic elements               ; 725 / 49,760 ( 1 % )                        ;
+;     Total combinational functions  ; 663 / 49,760 ( 1 % )                        ;
+;     Dedicated logic registers      ; 390 / 49,760 ( < 1 % )                      ;
+; Total registers                    ; 390                                         ;
+; Total pins                         ; 70 / 360 ( 19 % )                           ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0 / 1,677,312 ( 0 % )                       ;
 ; Embedded Multiplier 9-bit elements ; 0 / 288 ( 0 % )                             ;
@@ -66,7 +66,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/01/2022 20:22:00 ;
+; Start date & time ; 03/15/2022 18:37:45 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; top                 ;
 +-------------------+---------------------+
@@ -77,7 +77,7 @@ refer to the applicable agreement for further details.
 +-----------------------+-------------------------------+---------------+-------------+------------+
 ; Assignment Name       ; Value                         ; Default Value ; Entity Name ; Section Id ;
 +-----------------------+-------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID ; 8796760579374.164616252002876 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID ; 8796760579374.164736586502244 ; --            ; --          ; --         ;
 +-----------------------+-------------------------------+---------------+-------------+------------+
 
 
@@ -86,11 +86,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:22     ; 1.0                     ; 895 MB              ; 00:00:30                           ;
-; Fitter               ; 00:00:25     ; 1.1                     ; 1378 MB             ; 00:00:30                           ;
-; Assembler            ; 00:00:07     ; 1.0                     ; 809 MB              ; 00:00:06                           ;
-; Timing Analyzer      ; 00:00:07     ; 1.1                     ; 880 MB              ; 00:00:07                           ;
-; Total                ; 00:01:01     ; --                      ; --                  ; 00:01:13                           ;
+; Analysis & Synthesis ; 00:00:38     ; 1.0                     ; 882 MB              ; 00:00:28                           ;
+; Fitter               ; 00:00:32     ; 1.1                     ; 1358 MB             ; 00:00:22                           ;
+; Assembler            ; 00:00:08     ; 1.0                     ; 794 MB              ; 00:00:06                           ;
+; Timing Analyzer      ; 00:00:08     ; 1.1                     ; 869 MB              ; 00:00:06                           ;
+; Total                ; 00:01:26     ; --                      ; --                  ; 00:01:02                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

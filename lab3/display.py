@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 from migen import *
-
 from tick import Tick
+from litex.soc.interconnect.csr import *
 
 # Goals:
 # - understand own to use external modules
@@ -49,24 +49,26 @@ class SevenSegment(Module):
 
 # SevenSegmentDisplay ------------------------------------------------------------------------------
 
-class SevenSegmentDisplay(Module):
-    def __init__(self, sys_clk_freq, cs_period=0.001):
-        # Module's interface     
-        self.values = Signal(4)  # input        
+class SevenSegmentDisplay(Module, AutoCSR):
+    def __init__(self, sys_clk_freq):
+    #    self.sel   = CSRStorage(4)
+        self.value = CSRStorage(4)
+        self.write = CSR()
+        
+               
         self.abcdefg = Signal(7) # output
+        
 
         # Create our seven segment controller
         seven_segment = SevenSegment()
         self.submodules += seven_segment
         self.comb += self.abcdefg.eq(seven_segment.abcdefg)
 
-        # Create a tick every cs_period
-        self.submodules.tick = Tick(sys_clk_freq, cs_period)
 
         # Synchronous assigment
         self.sync += [
         # Using clock to activate the seven segment display
-            If(self.tick.ce, seven_segment.value.eq(self.values)) 
+            If(self.write.re,seven_segment.value.eq(self.value.storage))
         ]
  
 # Main ---------------------------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 Flow report for top
-Fri Feb 25 16:05:57 2022
+Wed Mar  9 14:09:29 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Fri Feb 25 16:05:48 2022       ;
+; Flow Status                        ; Successful - Wed Mar  9 14:09:22 2022       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; top                                         ;
 ; Top-level Entity Name              ; top                                         ;
@@ -66,7 +66,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 02/25/2022 16:04:38 ;
+; Start date & time ; 03/09/2022 14:08:41 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; top                 ;
 +-------------------+---------------------+
@@ -77,7 +77,7 @@ refer to the applicable agreement for further details.
 +-----------------------+-------------------------------+---------------+-------------+------------+
 ; Assignment Name       ; Value                         ; Default Value ; Entity Name ; Section Id ;
 +-----------------------+-------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID ; 8796760579374.164580147802342 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID ; 8796760579374.164683132004727 ; --            ; --          ; --         ;
 +-----------------------+-------------------------------+---------------+-------------+------------+
 
 
@@ -86,11 +86,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:30     ; 1.0                     ; 885 MB              ; 00:00:26                           ;
-; Fitter               ; 00:00:28     ; 1.0                     ; 1359 MB             ; 00:00:19                           ;
-; Assembler            ; 00:00:09     ; 1.0                     ; 805 MB              ; 00:00:06                           ;
-; Timing Analyzer      ; 00:00:08     ; 1.0                     ; 885 MB              ; 00:00:06                           ;
-; Total                ; 00:01:15     ; --                      ; --                  ; 00:00:57                           ;
+; Analysis & Synthesis ; 00:00:18     ; 1.0                     ; 882 MB              ; 00:00:25                           ;
+; Fitter               ; 00:00:16     ; 1.0                     ; 1352 MB             ; 00:00:16                           ;
+; Assembler            ; 00:00:07     ; 1.0                     ; 795 MB              ; 00:00:06                           ;
+; Timing Analyzer      ; 00:00:07     ; 1.0                     ; 874 MB              ; 00:00:05                           ;
+; Total                ; 00:00:48     ; --                      ; --                  ; 00:00:52                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

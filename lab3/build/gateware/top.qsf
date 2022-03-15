@@ -1,10 +1,6 @@
 set_global_assignment -name DEVICE 10M50DAF484C7G
 set_global_assignment -name SYSTEMVERILOG_FILE /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v -library work
 set_global_assignment -name top_level_entity top
-set_location_assignment -comment "clk50:0" -to clk50 Pin_N14
-set_instance_assignment -name io_standard -comment "clk50:0" "3.3-V LVTTL" -to clk50
-set_location_assignment -comment "cpu_reset:0" -to cpu_reset Pin_A7
-set_instance_assignment -name io_standard -comment "cpu_reset:0" "3.3-V LVTTL" -to cpu_reset
 set_location_assignment -comment "serial:0.tx" -to serial_tx Pin_V10
 set_instance_assignment -name io_standard -comment "serial:0.tx" "3.3-V LVTTL" -to serial_tx
 set_location_assignment -comment "serial:0.rx" -to serial_rx Pin_W10
@@ -27,8 +23,6 @@ set_location_assignment -comment "user_led:7" -to user_led7 Pin_D14
 set_instance_assignment -name io_standard -comment "user_led:7" "3.3-V LVTTL" -to user_led7
 set_location_assignment -comment "user_led:8" -to user_led8 Pin_A11
 set_instance_assignment -name io_standard -comment "user_led:8" "3.3-V LVTTL" -to user_led8
-set_location_assignment -comment "user_led:9" -to user_led9 Pin_B11
-set_instance_assignment -name io_standard -comment "user_led:9" "3.3-V LVTTL" -to user_led9
 set_location_assignment -comment "user_sw:0" -to user_sw0 Pin_C10
 set_instance_assignment -name io_standard -comment "user_sw:0" "3.3-V LVTTL" -to user_sw0
 set_location_assignment -comment "user_sw:1" -to user_sw1 Pin_C11
@@ -47,18 +41,8 @@ set_location_assignment -comment "user_sw:7" -to user_sw7 Pin_A14
 set_instance_assignment -name io_standard -comment "user_sw:7" "3.3-V LVTTL" -to user_sw7
 set_location_assignment -comment "user_sw:8" -to user_sw8 Pin_B14
 set_instance_assignment -name io_standard -comment "user_sw:8" "3.3-V LVTTL" -to user_sw8
-set_location_assignment -comment "user_sw:9" -to user_sw9 Pin_F15
-set_instance_assignment -name io_standard -comment "user_sw:9" "3.3-V LVTTL" -to user_sw9
-set_location_assignment -comment "user_btn_1:0" -to user_btn_1 Pin_B8
-set_instance_assignment -name io_standard -comment "user_btn_1:0" "3.3-V LVTTL" -to user_btn_1
-set_location_assignment -comment "adxl362_spi:0.cs_n" -to adxl362_spi_cs_n Pin_AB16
-set_instance_assignment -name io_standard -comment "adxl362_spi:0.cs_n" "3.3-V LVTTL" -to adxl362_spi_cs_n
-set_location_assignment -comment "adxl362_spi:0.clk" -to adxl362_spi_clk Pin_AB15
-set_instance_assignment -name io_standard -comment "adxl362_spi:0.clk" "3.3-V LVTTL" -to adxl362_spi_clk
-set_location_assignment -comment "adxl362_spi:0.mosi" -to adxl362_spi_mosi Pin_V11
-set_instance_assignment -name io_standard -comment "adxl362_spi:0.mosi" "3.3-V LVTTL" -to adxl362_spi_mosi
-set_location_assignment -comment "adxl362_spi:0.miso" -to adxl362_spi_miso Pin_V12
-set_instance_assignment -name io_standard -comment "adxl362_spi:0.miso" "3.3-V LVTTL" -to adxl362_spi_miso
+set_location_assignment -comment "user_btn:0" -to user_btn0 Pin_B8
+set_instance_assignment -name io_standard -comment "user_btn:0" "3.3-V LVTTL" -to user_btn0
 set_location_assignment -comment "display_1:0" -to display_1[0] Pin_C14
 set_instance_assignment -name io_standard -comment "display_1:0" "3.3-V LVTTL" -to display_1[0]
 set_location_assignment -comment "display_1:0" -to display_1[1] Pin_E15
@@ -155,4 +139,6 @@ set_location_assignment -comment "display_6:0" -to display_6[6] Pin_N20
 set_instance_assignment -name io_standard -comment "display_6:0" "3.3-V LVTTL" -to display_6[6]
 set_location_assignment -comment "display_6:0" -to display_6[7] Pin_L19
 set_instance_assignment -name io_standard -comment "display_6:0" "3.3-V LVTTL" -to display_6[7]
+set_location_assignment -comment "clk50:0" -to clk50 Pin_N14
+set_instance_assignment -name io_standard -comment "clk50:0" "3.3-V LVTTL" -to clk50
 set_global_assignment -name SDC_FILE top.sdc

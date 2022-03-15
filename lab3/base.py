@@ -13,8 +13,6 @@ from display import SevenSegmentDisplay
 from litex.soc.integration.soc_core import *
 from litex.soc.integration.builder import *
 from litex.soc.cores.uart import UARTWishboneBridge
-from litex.soc.cores import dna, xadc
-from litex.soc.cores.spi import SPIMaster
 
 
 # IO's
@@ -37,9 +35,9 @@ _io = [
     ("user_led", 9, Pins("B11"), IOStandard("3.3-V LVTTL")),
 
 	#buttons
-    ("user_btn_1", 0, Pins("B8"), IOStandard("3.3-V LVTTL")),
+    ("user_btn", 0, Pins("B8"), IOStandard("3.3-V LVTTL")),
     
-    ("cpu_reset", 0, Pins("A7"), IOStandard("3.3-V LVTTL")), #last: user_btn_2
+    ("user_btn", 1, Pins("A7"), IOStandard("3.3-V LVTTL")), #last: user_btn_2
 
 	#user switchs
     ("user_sw", 0, Pins("C10"), IOStandard("3.3-V LVTTL")),
@@ -77,6 +75,16 @@ _io = [
         Subsignal("tx", Pins("V10"), IOStandard("3.3-V LVTTL")), #  GPIO[0]
         Subsignal("rx", Pins("W10"), IOStandard("3.3-V LVTTL"))  #  GPIO[1]
     ),
+    
+    
+     ("acc_spi", 0,
+        Subsignal("mosi", Pins("V11")),
+        Subsignal("miso", Pins("V12")),
+        Subsignal("clk", Pins("AB15")),
+        Subsignal("cs_n", Pins("AB16")),   #mode selection (master or slave)
+        IOStandard("3.3-V LVTTL")
+    )
+    
         
 ]
 
@@ -99,66 +107,45 @@ platform = Platform()
 # Create our soc (fpga description)
 class BaseSoC(SoCMini):
     def __init__(self, platform, **kwargs):
-        sys_clk_freq = int(100e6)
+        sys_clk_freq = int(50e6)
 
         # SoCMini (No CPU, we are controlling the SoC over UART)
         SoCMini.__init__(self, platform, sys_clk_freq, csr_data_width=32,
             ident="My first LiteX System On Chip", ident_version=True)
 
-        # Clock Reset Generation
-        self.submodules.crg = CRG(platform.request("clk50"), ~platform.request("cpu_reset"))
-
         # No CPU, use Serial to control Wishbone bus
         self.submodules.serial_bridge = UARTWishboneBridge(platform.request("serial"), sys_clk_freq)
         self.add_wb_master(self.serial_bridge.wishbone)
 
-        # FPGA identification
-  #      self.submodules.dna = dna.DNA()
-  #      self.add_csr("dna")
-
-        # FPGA Temperature/Voltage
-  #      self.submodules.xadc = xadc.XADC()
-  #      self.add_csr("xadc")
-
         # Led
-        user_leds = Cat(*[platform.request("user_led", i) for i in range(10)])
+        user_leds = Cat(*[platform.request("user_led", i) for i in range(9)])
         self.submodules.leds = Led(user_leds)
         self.add_csr("leds")
 
         # Switches
-        user_switches = Cat(*[platform.request("user_sw", i) for i in range(10)])
+        user_switches = Cat(*[platform.request("user_sw", i) for i in range(9)])
         self.submodules.switches = Switch(user_switches)
         self.add_csr("switches")
 
         # Buttons
-        user_buttons = platform.request("user_btn_1")
+        user_buttons = Cat(*[platform.request("user_btn", i) for i in range(1)])
         self.submodules.buttons = Button(user_buttons)
         self.add_csr("buttons")
-
-        # RGB Led -> not available on the de10-Lite board
-        # self.submodules.rgbled  = RGBLed(platform.request("user_rgb_led",  0))
-        # self.add_csr("rgbled")
-
-        # Accelerometer
-        self.submodules.adxl362 = SPIMaster(platform.request("adxl362_spi"),
-            data_width   = 32,
-            sys_clk_freq = sys_clk_freq,
-            spi_clk_freq = 1e6)
-        self.add_csr("adxl362")
+       
+        
 
         # SevenSegmentDisplay
         self.submodules.display1 = SevenSegmentDisplay(sys_clk_freq)
-        self.submodules.display2 = SevenSegmentDisplay(sys_clk_freq)
-        self.submodules.display3 = SevenSegmentDisplay(sys_clk_freq)
-        self.submodules.display4 = SevenSegmentDisplay(sys_clk_freq)
-        self.submodules.display5 = SevenSegmentDisplay(sys_clk_freq)
-        self.submodules.display6 = SevenSegmentDisplay(sys_clk_freq)
-
         self.add_csr("display1")
+        self.submodules.display2 = SevenSegmentDisplay(sys_clk_freq)
         self.add_csr("display2")
+        self.submodules.display3 = SevenSegmentDisplay(sys_clk_freq)
         self.add_csr("display3")
+        self.submodules.display4 = SevenSegmentDisplay(sys_clk_freq)
         self.add_csr("display4")
+        self.submodules.display5 = SevenSegmentDisplay(sys_clk_freq)
         self.add_csr("display5")
+        self.submodules.display6 = SevenSegmentDisplay(sys_clk_freq)
         self.add_csr("display6")
 
         self.comb += [

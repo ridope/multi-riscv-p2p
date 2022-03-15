@@ -44,19 +44,171 @@
 					"strict" : false
 				},
 				{
-					"name" : "user_led9",
+					"name" : "display_1[0]",
 					"strict" : false
 				},
 				{
-					"name" : "adxl362_spi_cs_n",
+					"name" : "display_1[1]",
 					"strict" : false
 				},
 				{
-					"name" : "adxl362_spi_clk",
+					"name" : "display_1[2]",
 					"strict" : false
 				},
 				{
-					"name" : "adxl362_spi_mosi",
+					"name" : "display_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "display_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "display_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "display_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "display_2[0]",
+					"strict" : false
+				},
+				{
+					"name" : "display_2[1]",
+					"strict" : false
+				},
+				{
+					"name" : "display_2[2]",
+					"strict" : false
+				},
+				{
+					"name" : "display_2[3]",
+					"strict" : false
+				},
+				{
+					"name" : "display_2[4]",
+					"strict" : false
+				},
+				{
+					"name" : "display_2[5]",
+					"strict" : false
+				},
+				{
+					"name" : "display_2[6]",
+					"strict" : false
+				},
+				{
+					"name" : "display_3[0]",
+					"strict" : false
+				},
+				{
+					"name" : "display_3[1]",
+					"strict" : false
+				},
+				{
+					"name" : "display_3[2]",
+					"strict" : false
+				},
+				{
+					"name" : "display_3[3]",
+					"strict" : false
+				},
+				{
+					"name" : "display_3[4]",
+					"strict" : false
+				},
+				{
+					"name" : "display_3[5]",
+					"strict" : false
+				},
+				{
+					"name" : "display_3[6]",
+					"strict" : false
+				},
+				{
+					"name" : "display_4[0]",
+					"strict" : false
+				},
+				{
+					"name" : "display_4[1]",
+					"strict" : false
+				},
+				{
+					"name" : "display_4[2]",
+					"strict" : false
+				},
+				{
+					"name" : "display_4[3]",
+					"strict" : false
+				},
+				{
+					"name" : "display_4[4]",
+					"strict" : false
+				},
+				{
+					"name" : "display_4[5]",
+					"strict" : false
+				},
+				{
+					"name" : "display_4[6]",
+					"strict" : false
+				},
+				{
+					"name" : "display_5[0]",
+					"strict" : false
+				},
+				{
+					"name" : "display_5[1]",
+					"strict" : false
+				},
+				{
+					"name" : "display_5[2]",
+					"strict" : false
+				},
+				{
+					"name" : "display_5[3]",
+					"strict" : false
+				},
+				{
+					"name" : "display_5[4]",
+					"strict" : false
+				},
+				{
+					"name" : "display_5[5]",
+					"strict" : false
+				},
+				{
+					"name" : "display_5[6]",
+					"strict" : false
+				},
+				{
+					"name" : "display_6[0]",
+					"strict" : false
+				},
+				{
+					"name" : "display_6[1]",
+					"strict" : false
+				},
+				{
+					"name" : "display_6[2]",
+					"strict" : false
+				},
+				{
+					"name" : "display_6[3]",
+					"strict" : false
+				},
+				{
+					"name" : "display_6[4]",
+					"strict" : false
+				},
+				{
+					"name" : "display_6[5]",
+					"strict" : false
+				},
+				{
+					"name" : "display_6[6]",
 					"strict" : false
 				},
 				{
@@ -64,23 +216,15 @@
 					"strict" : false
 				},
 				{
-					"name" : "cpu_reset",
-					"strict" : false
-				},
-				{
 					"name" : "serial_rx",
 					"strict" : false
 				},
 				{
-					"name" : "adxl362_spi_miso",
-					"strict" : false
-				},
-				{
-					"name" : "user_btn_1",
-					"strict" : false
-				},
-				{
 					"name" : "user_sw0",
+					"strict" : false
+				},
+				{
+					"name" : "user_btn0",
 					"strict" : false
 				},
 				{
@@ -113,10 +257,6 @@
 				},
 				{
 					"name" : "user_sw8",
-					"strict" : false
-				},
-				{
-					"name" : "user_sw9",
 					"strict" : false
 				}
 			]

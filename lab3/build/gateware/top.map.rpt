@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top
-Tue Mar  1 20:22:22 2022
+Tue Mar 15 18:38:24 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -13,22 +13,15 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |top|display6_value
-  9. State Machine - |top|display5_value
- 10. State Machine - |top|display4_value
- 11. State Machine - |top|display3_value
- 12. State Machine - |top|display2_value
- 13. State Machine - |top|display1_value
- 14. State Machine - |top|spimaster_state
- 15. State Machine - |top|uartwishbonebridge_state
- 16. Registers Removed During Synthesis
- 17. Removed Registers Triggering Further Register Optimizations
- 18. General Register Statistics
- 19. Inverted Register Statistics
- 20. Multiplexer Restructuring Statistics (Restructuring Performed)
- 21. Post-Synthesis Netlist Statistics for Top Partition
- 22. Elapsed Time Per Partition
- 23. Analysis & Synthesis Messages
+  8. State Machine - |top|builder_subfragments_state
+  9. Registers Removed During Synthesis
+ 10. Removed Registers Triggering Further Register Optimizations
+ 11. General Register Statistics
+ 12. Inverted Register Statistics
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Post-Synthesis Netlist Statistics for Top Partition
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
 
 
 
@@ -54,16 +47,16 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Mar  1 20:22:22 2022       ;
+; Analysis & Synthesis Status        ; Successful - Tue Mar 15 18:38:24 2022       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; top                                         ;
 ; Top-level Entity Name              ; top                                         ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 957                                         ;
-;     Total combinational functions  ; 849                                         ;
-;     Dedicated logic registers      ; 554                                         ;
-; Total registers                    ; 554                                         ;
-; Total pins                         ; 77                                          ;
+; Total logic elements               ; 732                                         ;
+;     Total combinational functions  ; 662                                         ;
+;     Dedicated logic registers      ; 390                                         ;
+; Total registers                    ; 390                                         ;
+; Total pins                         ; 70                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -191,30 +184,30 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 957         ;
+; Estimated Total logic elements              ; 732         ;
 ;                                             ;             ;
-; Total combinational functions               ; 849         ;
+; Total combinational functions               ; 662         ;
 ; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 330         ;
-;     -- 3 input functions                    ; 110         ;
-;     -- <=2 input functions                  ; 409         ;
+;     -- 4 input functions                    ; 282         ;
+;     -- 3 input functions                    ; 143         ;
+;     -- <=2 input functions                  ; 237         ;
 ;                                             ;             ;
 ; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 707         ;
-;     -- arithmetic mode                      ; 142         ;
+;     -- normal mode                          ; 553         ;
+;     -- arithmetic mode                      ; 109         ;
 ;                                             ;             ;
-; Total registers                             ; 554         ;
-;     -- Dedicated logic registers            ; 554         ;
+; Total registers                             ; 390         ;
+;     -- Dedicated logic registers            ; 390         ;
 ;     -- I/O registers                        ; 0           ;
 ;                                             ;             ;
-; I/O pins                                    ; 77          ;
+; I/O pins                                    ; 70          ;
 ;                                             ;             ;
 ; Embedded Multiplier 9-bit elements          ; 0           ;
 ;                                             ;             ;
 ; Maximum fan-out node                        ; clk50~input ;
-; Maximum fan-out                             ; 554         ;
-; Total fan-out                               ; 4032        ;
-; Average fan-out                             ; 2.59        ;
+; Maximum fan-out                             ; 390         ;
+; Total fan-out                               ; 3142        ;
+; Average fan-out                             ; 2.64        ;
 +---------------------------------------------+-------------+
 
 
@@ -223,433 +216,61 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
-; |top                       ; 849 (849)           ; 554 (554)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 77   ; 0            ; 0          ; |top                ; top         ; work         ;
+; |top                       ; 662 (662)           ; 390 (390)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 70   ; 0            ; 0          ; |top                ; top         ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
 Encoding Type:  One-Hot
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |top|display6_value                                                                                                                                                                                                                                                                                                                                                 ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-; Name                ; display6_value.1111 ; display6_value.1110 ; display6_value.1101 ; display6_value.1100 ; display6_value.1011 ; display6_value.1010 ; display6_value.1001 ; display6_value.1000 ; display6_value.0111 ; display6_value.0110 ; display6_value.0101 ; display6_value.0100 ; display6_value.0011 ; display6_value.0010 ; display6_value.0001 ; display6_value.0000 ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-; display6_value.0000 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ;
-; display6_value.0001 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 1                   ;
-; display6_value.0010 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 1                   ;
-; display6_value.0011 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 1                   ;
-; display6_value.0100 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display6_value.0101 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display6_value.0110 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display6_value.0111 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display6_value.1000 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display6_value.1001 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display6_value.1010 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display6_value.1011 ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display6_value.1100 ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display6_value.1101 ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display6_value.1110 ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display6_value.1111 ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |top|builder_subfragments_state                                                                                                                                                                                                                       ;
++--------------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+
+; Name                           ; builder_subfragments_state.110 ; builder_subfragments_state.101 ; builder_subfragments_state.100 ; builder_subfragments_state.011 ; builder_subfragments_state.010 ; builder_subfragments_state.001 ; builder_subfragments_state.000 ;
++--------------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+
+; builder_subfragments_state.000 ; 0                              ; 0                              ; 0                              ; 0                              ; 0                              ; 0                              ; 0                              ;
+; builder_subfragments_state.001 ; 0                              ; 0                              ; 0                              ; 0                              ; 0                              ; 1                              ; 1                              ;
+; builder_subfragments_state.010 ; 0                              ; 0                              ; 0                              ; 0                              ; 1                              ; 0                              ; 1                              ;
+; builder_subfragments_state.011 ; 0                              ; 0                              ; 0                              ; 1                              ; 0                              ; 0                              ; 1                              ;
+; builder_subfragments_state.100 ; 0                              ; 0                              ; 1                              ; 0                              ; 0                              ; 0                              ; 1                              ;
+; builder_subfragments_state.101 ; 0                              ; 1                              ; 0                              ; 0                              ; 0                              ; 0                              ; 1                              ;
+; builder_subfragments_state.110 ; 1                              ; 0                              ; 0                              ; 0                              ; 0                              ; 0                              ; 1                              ;
++--------------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+
 
 
-Encoding Type:  One-Hot
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |top|display5_value                                                                                                                                                                                                                                                                                                                                                 ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-; Name                ; display5_value.1111 ; display5_value.1110 ; display5_value.1101 ; display5_value.1100 ; display5_value.1011 ; display5_value.1010 ; display5_value.1001 ; display5_value.1000 ; display5_value.0111 ; display5_value.0110 ; display5_value.0101 ; display5_value.0100 ; display5_value.0011 ; display5_value.0010 ; display5_value.0001 ; display5_value.0000 ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-; display5_value.0000 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ;
-; display5_value.0001 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 1                   ;
-; display5_value.0010 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 1                   ;
-; display5_value.0011 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 1                   ;
-; display5_value.0100 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display5_value.0101 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display5_value.0110 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display5_value.0111 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display5_value.1000 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display5_value.1001 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display5_value.1010 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display5_value.1011 ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display5_value.1100 ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display5_value.1101 ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display5_value.1110 ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display5_value.1111 ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
++---------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                      ;
++----------------------------------------------------------------+----------------------------------------+
+; Register name                                                  ; Reason for Removal                     ;
++----------------------------------------------------------------+----------------------------------------+
+; builder_basesoc_csr_bankarray_interface2_bank_bus_dat_r[4..31] ; Stuck at GND due to stuck port data_in ;
+; builder_basesoc_csr_bankarray_interface3_bank_bus_dat_r[4..31] ; Stuck at GND due to stuck port data_in ;
+; builder_basesoc_csr_bankarray_interface4_bank_bus_dat_r[4..31] ; Stuck at GND due to stuck port data_in ;
+; builder_basesoc_csr_bankarray_interface5_bank_bus_dat_r[4..31] ; Stuck at GND due to stuck port data_in ;
+; builder_basesoc_csr_bankarray_interface6_bank_bus_dat_r[4..31] ; Stuck at GND due to stuck port data_in ;
+; builder_basesoc_csr_bankarray_interface7_bank_bus_dat_r[4..31] ; Stuck at GND due to stuck port data_in ;
+; builder_basesoc_csr_bankarray_interface8_bank_bus_dat_r[9..31] ; Stuck at GND due to stuck port data_in ;
+; builder_basesoc_csr_bankarray_interface9_bank_bus_dat_r[9..31] ; Stuck at GND due to stuck port data_in ;
+; builder_basesoc_csr_bankarray_interface0_bank_bus_dat_r[1..31] ; Stuck at GND due to stuck port data_in ;
+; __main___bus_errors[0..31]                                     ; Stuck at GND due to stuck port data_in ;
+; builder_subfragments_state~2                                   ; Lost fanout                            ;
+; builder_subfragments_state~3                                   ; Lost fanout                            ;
+; builder_subfragments_state~4                                   ; Lost fanout                            ;
+; __main___address[14..31]                                       ; Lost fanout                            ;
+; Total Number of Removed Registers = 298                        ;                                        ;
++----------------------------------------------------------------+----------------------------------------+
 
 
-Encoding Type:  One-Hot
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |top|display4_value                                                                                                                                                                                                                                                                                                                                                 ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-; Name                ; display4_value.1111 ; display4_value.1110 ; display4_value.1101 ; display4_value.1100 ; display4_value.1011 ; display4_value.1010 ; display4_value.1001 ; display4_value.1000 ; display4_value.0111 ; display4_value.0110 ; display4_value.0101 ; display4_value.0100 ; display4_value.0011 ; display4_value.0010 ; display4_value.0001 ; display4_value.0000 ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-; display4_value.0000 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ;
-; display4_value.0001 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 1                   ;
-; display4_value.0010 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 1                   ;
-; display4_value.0011 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 1                   ;
-; display4_value.0100 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display4_value.0101 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display4_value.0110 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display4_value.0111 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display4_value.1000 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display4_value.1001 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display4_value.1010 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display4_value.1011 ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display4_value.1100 ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display4_value.1101 ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display4_value.1110 ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display4_value.1111 ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-
-
-Encoding Type:  One-Hot
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |top|display3_value                                                                                                                                                                                                                                                                                                                                                 ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-; Name                ; display3_value.1111 ; display3_value.1110 ; display3_value.1101 ; display3_value.1100 ; display3_value.1011 ; display3_value.1010 ; display3_value.1001 ; display3_value.1000 ; display3_value.0111 ; display3_value.0110 ; display3_value.0101 ; display3_value.0100 ; display3_value.0011 ; display3_value.0010 ; display3_value.0001 ; display3_value.0000 ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-; display3_value.0000 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ;
-; display3_value.0001 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 1                   ;
-; display3_value.0010 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 1                   ;
-; display3_value.0011 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 1                   ;
-; display3_value.0100 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display3_value.0101 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display3_value.0110 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display3_value.0111 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display3_value.1000 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display3_value.1001 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display3_value.1010 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display3_value.1011 ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display3_value.1100 ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display3_value.1101 ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display3_value.1110 ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display3_value.1111 ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-
-
-Encoding Type:  One-Hot
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |top|display2_value                                                                                                                                                                                                                                                                                                                                                 ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-; Name                ; display2_value.1111 ; display2_value.1110 ; display2_value.1101 ; display2_value.1100 ; display2_value.1011 ; display2_value.1010 ; display2_value.1001 ; display2_value.1000 ; display2_value.0111 ; display2_value.0110 ; display2_value.0101 ; display2_value.0100 ; display2_value.0011 ; display2_value.0010 ; display2_value.0001 ; display2_value.0000 ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-; display2_value.0000 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ;
-; display2_value.0001 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 1                   ;
-; display2_value.0010 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 1                   ;
-; display2_value.0011 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 1                   ;
-; display2_value.0100 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display2_value.0101 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display2_value.0110 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display2_value.0111 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display2_value.1000 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display2_value.1001 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display2_value.1010 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display2_value.1011 ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display2_value.1100 ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display2_value.1101 ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display2_value.1110 ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display2_value.1111 ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-
-
-Encoding Type:  One-Hot
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |top|display1_value                                                                                                                                                                                                                                                                                                                                                 ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-; Name                ; display1_value.1111 ; display1_value.1110 ; display1_value.1101 ; display1_value.1100 ; display1_value.1011 ; display1_value.1010 ; display1_value.1001 ; display1_value.1000 ; display1_value.0111 ; display1_value.0110 ; display1_value.0101 ; display1_value.0100 ; display1_value.0011 ; display1_value.0010 ; display1_value.0001 ; display1_value.0000 ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-; display1_value.0000 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ;
-; display1_value.0001 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 1                   ;
-; display1_value.0010 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 1                   ;
-; display1_value.0011 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 1                   ;
-; display1_value.0100 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display1_value.0101 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display1_value.0110 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display1_value.0111 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display1_value.1000 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display1_value.1001 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display1_value.1010 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display1_value.1011 ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display1_value.1100 ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display1_value.1101 ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display1_value.1110 ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-; display1_value.1111 ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
-+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
-
-
-Encoding Type:  One-Hot
-+--------------------------------------------------------------------------------------------------------+
-; State Machine - |top|spimaster_state                                                                   ;
-+--------------------+--------------------+--------------------+--------------------+--------------------+
-; Name               ; spimaster_state.11 ; spimaster_state.10 ; spimaster_state.01 ; spimaster_state.00 ;
-+--------------------+--------------------+--------------------+--------------------+--------------------+
-; spimaster_state.00 ; 0                  ; 0                  ; 0                  ; 0                  ;
-; spimaster_state.01 ; 0                  ; 0                  ; 1                  ; 1                  ;
-; spimaster_state.10 ; 0                  ; 1                  ; 0                  ; 1                  ;
-; spimaster_state.11 ; 1                  ; 0                  ; 0                  ; 1                  ;
-+--------------------+--------------------+--------------------+--------------------+--------------------+
-
-
-Encoding Type:  One-Hot
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |top|uartwishbonebridge_state                                                                                                                                                                                                         ;
-+------------------------------+------------------------------+------------------------------+------------------------------+------------------------------+------------------------------+------------------------------+------------------------------+
-; Name                         ; uartwishbonebridge_state.110 ; uartwishbonebridge_state.101 ; uartwishbonebridge_state.100 ; uartwishbonebridge_state.011 ; uartwishbonebridge_state.010 ; uartwishbonebridge_state.001 ; uartwishbonebridge_state.000 ;
-+------------------------------+------------------------------+------------------------------+------------------------------+------------------------------+------------------------------+------------------------------+------------------------------+
-; uartwishbonebridge_state.000 ; 0                            ; 0                            ; 0                            ; 0                            ; 0                            ; 0                            ; 0                            ;
-; uartwishbonebridge_state.001 ; 0                            ; 0                            ; 0                            ; 0                            ; 0                            ; 1                            ; 1                            ;
-; uartwishbonebridge_state.010 ; 0                            ; 0                            ; 0                            ; 0                            ; 1                            ; 0                            ; 1                            ;
-; uartwishbonebridge_state.011 ; 0                            ; 0                            ; 0                            ; 1                            ; 0                            ; 0                            ; 1                            ;
-; uartwishbonebridge_state.100 ; 0                            ; 0                            ; 1                            ; 0                            ; 0                            ; 0                            ; 1                            ;
-; uartwishbonebridge_state.101 ; 0                            ; 1                            ; 0                            ; 0                            ; 0                            ; 0                            ; 1                            ;
-; uartwishbonebridge_state.110 ; 1                            ; 0                            ; 0                            ; 0                            ; 0                            ; 0                            ; 1                            ;
-+------------------------------+------------------------------+------------------------------+------------------------------+------------------------------+------------------------------+------------------------------+------------------------------+
-
-
-+------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                       ;
-+-------------------------------------------------+----------------------------------------+
-; Register name                                   ; Reason for Removal                     ;
-+-------------------------------------------------+----------------------------------------+
-; csr_bankarray_interface1_bank_bus_dat_r[1..31]  ; Stuck at GND due to stuck port data_in ;
-; csr_bankarray_interface3_bank_bus_dat_r[10..31] ; Stuck at GND due to stuck port data_in ;
-; csr_bankarray_interface4_bank_bus_dat_r[10..31] ; Stuck at GND due to stuck port data_in ;
-; bus_errors[0..31]                               ; Stuck at GND due to stuck port data_in ;
-; display2_counter[16]                            ; Merged with display1_counter[16]       ;
-; display3_counter[16]                            ; Merged with display1_counter[16]       ;
-; display4_counter[16]                            ; Merged with display1_counter[16]       ;
-; display5_counter[16]                            ; Merged with display1_counter[16]       ;
-; display6_counter[16]                            ; Merged with display1_counter[16]       ;
-; display2_counter[15]                            ; Merged with display1_counter[15]       ;
-; display3_counter[15]                            ; Merged with display1_counter[15]       ;
-; display4_counter[15]                            ; Merged with display1_counter[15]       ;
-; display5_counter[15]                            ; Merged with display1_counter[15]       ;
-; display6_counter[15]                            ; Merged with display1_counter[15]       ;
-; display2_counter[14]                            ; Merged with display1_counter[14]       ;
-; display3_counter[14]                            ; Merged with display1_counter[14]       ;
-; display4_counter[14]                            ; Merged with display1_counter[14]       ;
-; display5_counter[14]                            ; Merged with display1_counter[14]       ;
-; display6_counter[14]                            ; Merged with display1_counter[14]       ;
-; display2_counter[13]                            ; Merged with display1_counter[13]       ;
-; display3_counter[13]                            ; Merged with display1_counter[13]       ;
-; display4_counter[13]                            ; Merged with display1_counter[13]       ;
-; display5_counter[13]                            ; Merged with display1_counter[13]       ;
-; display6_counter[13]                            ; Merged with display1_counter[13]       ;
-; display2_counter[12]                            ; Merged with display1_counter[12]       ;
-; display3_counter[12]                            ; Merged with display1_counter[12]       ;
-; display4_counter[12]                            ; Merged with display1_counter[12]       ;
-; display5_counter[12]                            ; Merged with display1_counter[12]       ;
-; display6_counter[12]                            ; Merged with display1_counter[12]       ;
-; display2_counter[11]                            ; Merged with display1_counter[11]       ;
-; display3_counter[11]                            ; Merged with display1_counter[11]       ;
-; display4_counter[11]                            ; Merged with display1_counter[11]       ;
-; display5_counter[11]                            ; Merged with display1_counter[11]       ;
-; display6_counter[11]                            ; Merged with display1_counter[11]       ;
-; display2_counter[10]                            ; Merged with display1_counter[10]       ;
-; display3_counter[10]                            ; Merged with display1_counter[10]       ;
-; display4_counter[10]                            ; Merged with display1_counter[10]       ;
-; display5_counter[10]                            ; Merged with display1_counter[10]       ;
-; display6_counter[10]                            ; Merged with display1_counter[10]       ;
-; display2_counter[9]                             ; Merged with display1_counter[9]        ;
-; display3_counter[9]                             ; Merged with display1_counter[9]        ;
-; display4_counter[9]                             ; Merged with display1_counter[9]        ;
-; display5_counter[9]                             ; Merged with display1_counter[9]        ;
-; display6_counter[9]                             ; Merged with display1_counter[9]        ;
-; display2_counter[8]                             ; Merged with display1_counter[8]        ;
-; display3_counter[8]                             ; Merged with display1_counter[8]        ;
-; display4_counter[8]                             ; Merged with display1_counter[8]        ;
-; display5_counter[8]                             ; Merged with display1_counter[8]        ;
-; display6_counter[8]                             ; Merged with display1_counter[8]        ;
-; display2_counter[7]                             ; Merged with display1_counter[7]        ;
-; display3_counter[7]                             ; Merged with display1_counter[7]        ;
-; display4_counter[7]                             ; Merged with display1_counter[7]        ;
-; display5_counter[7]                             ; Merged with display1_counter[7]        ;
-; display6_counter[7]                             ; Merged with display1_counter[7]        ;
-; display2_counter[6]                             ; Merged with display1_counter[6]        ;
-; display3_counter[6]                             ; Merged with display1_counter[6]        ;
-; display4_counter[6]                             ; Merged with display1_counter[6]        ;
-; display5_counter[6]                             ; Merged with display1_counter[6]        ;
-; display6_counter[6]                             ; Merged with display1_counter[6]        ;
-; display2_counter[5]                             ; Merged with display1_counter[5]        ;
-; display3_counter[5]                             ; Merged with display1_counter[5]        ;
-; display4_counter[5]                             ; Merged with display1_counter[5]        ;
-; display5_counter[5]                             ; Merged with display1_counter[5]        ;
-; display6_counter[5]                             ; Merged with display1_counter[5]        ;
-; display2_counter[4]                             ; Merged with display1_counter[4]        ;
-; display3_counter[4]                             ; Merged with display1_counter[4]        ;
-; display4_counter[4]                             ; Merged with display1_counter[4]        ;
-; display5_counter[4]                             ; Merged with display1_counter[4]        ;
-; display6_counter[4]                             ; Merged with display1_counter[4]        ;
-; display2_counter[3]                             ; Merged with display1_counter[3]        ;
-; display3_counter[3]                             ; Merged with display1_counter[3]        ;
-; display4_counter[3]                             ; Merged with display1_counter[3]        ;
-; display5_counter[3]                             ; Merged with display1_counter[3]        ;
-; display6_counter[3]                             ; Merged with display1_counter[3]        ;
-; display2_counter[2]                             ; Merged with display1_counter[2]        ;
-; display3_counter[2]                             ; Merged with display1_counter[2]        ;
-; display4_counter[2]                             ; Merged with display1_counter[2]        ;
-; display5_counter[2]                             ; Merged with display1_counter[2]        ;
-; display6_counter[2]                             ; Merged with display1_counter[2]        ;
-; display2_counter[1]                             ; Merged with display1_counter[1]        ;
-; display3_counter[1]                             ; Merged with display1_counter[1]        ;
-; display4_counter[1]                             ; Merged with display1_counter[1]        ;
-; display5_counter[1]                             ; Merged with display1_counter[1]        ;
-; display6_counter[1]                             ; Merged with display1_counter[1]        ;
-; display2_counter[0]                             ; Merged with display1_counter[0]        ;
-; display3_counter[0]                             ; Merged with display1_counter[0]        ;
-; display4_counter[0]                             ; Merged with display1_counter[0]        ;
-; display5_counter[0]                             ; Merged with display1_counter[0]        ;
-; display6_counter[0]                             ; Merged with display1_counter[0]        ;
-; display6_value~3                                ; Lost fanout                            ;
-; display6_value~4                                ; Lost fanout                            ;
-; display6_value~5                                ; Lost fanout                            ;
-; display6_value~6                                ; Lost fanout                            ;
-; display5_value~3                                ; Lost fanout                            ;
-; display5_value~4                                ; Lost fanout                            ;
-; display5_value~5                                ; Lost fanout                            ;
-; display5_value~6                                ; Lost fanout                            ;
-; display4_value~3                                ; Lost fanout                            ;
-; display4_value~4                                ; Lost fanout                            ;
-; display4_value~5                                ; Lost fanout                            ;
-; display4_value~6                                ; Lost fanout                            ;
-; display3_value~3                                ; Lost fanout                            ;
-; display3_value~4                                ; Lost fanout                            ;
-; display3_value~5                                ; Lost fanout                            ;
-; display3_value~6                                ; Lost fanout                            ;
-; display2_value~3                                ; Lost fanout                            ;
-; display2_value~4                                ; Lost fanout                            ;
-; display2_value~5                                ; Lost fanout                            ;
-; display2_value~6                                ; Lost fanout                            ;
-; display1_value~3                                ; Lost fanout                            ;
-; display1_value~4                                ; Lost fanout                            ;
-; display1_value~5                                ; Lost fanout                            ;
-; display1_value~6                                ; Lost fanout                            ;
-; spimaster_state~2                               ; Lost fanout                            ;
-; spimaster_state~3                               ; Lost fanout                            ;
-; uartwishbonebridge_state~2                      ; Lost fanout                            ;
-; uartwishbonebridge_state~3                      ; Lost fanout                            ;
-; uartwishbonebridge_state~4                      ; Lost fanout                            ;
-; display6_value.1000                             ; Lost fanout                            ;
-; display5_value.1000                             ; Lost fanout                            ;
-; display4_value.1000                             ; Lost fanout                            ;
-; display3_value.1000                             ; Lost fanout                            ;
-; display2_value.1000                             ; Lost fanout                            ;
-; display1_value.1000                             ; Lost fanout                            ;
-; display1_value.0010                             ; Merged with display1_value.0001        ;
-; display1_value.0011                             ; Merged with display1_value.0001        ;
-; display1_value.0100                             ; Merged with display1_value.0001        ;
-; display1_value.0101                             ; Merged with display1_value.0001        ;
-; display1_value.0110                             ; Merged with display1_value.0001        ;
-; display1_value.0111                             ; Merged with display1_value.0001        ;
-; display1_value.1001                             ; Merged with display1_value.0001        ;
-; display1_value.1010                             ; Merged with display1_value.0001        ;
-; display1_value.1011                             ; Merged with display1_value.0001        ;
-; display1_value.1100                             ; Merged with display1_value.0001        ;
-; display1_value.1101                             ; Merged with display1_value.0001        ;
-; display1_value.1110                             ; Merged with display1_value.0001        ;
-; display1_value.1111                             ; Merged with display1_value.0001        ;
-; display2_value.0001                             ; Merged with display1_value.0001        ;
-; display2_value.0010                             ; Merged with display1_value.0001        ;
-; display2_value.0011                             ; Merged with display1_value.0001        ;
-; display2_value.0100                             ; Merged with display1_value.0001        ;
-; display2_value.0101                             ; Merged with display1_value.0001        ;
-; display2_value.0110                             ; Merged with display1_value.0001        ;
-; display2_value.0111                             ; Merged with display1_value.0001        ;
-; display2_value.1001                             ; Merged with display1_value.0001        ;
-; display2_value.1010                             ; Merged with display1_value.0001        ;
-; display2_value.1011                             ; Merged with display1_value.0001        ;
-; display2_value.1100                             ; Merged with display1_value.0001        ;
-; display2_value.1101                             ; Merged with display1_value.0001        ;
-; display2_value.1110                             ; Merged with display1_value.0001        ;
-; display2_value.1111                             ; Merged with display1_value.0001        ;
-; display3_value.0001                             ; Merged with display1_value.0001        ;
-; display3_value.0010                             ; Merged with display1_value.0001        ;
-; display3_value.0011                             ; Merged with display1_value.0001        ;
-; display3_value.0100                             ; Merged with display1_value.0001        ;
-; display3_value.0101                             ; Merged with display1_value.0001        ;
-; display3_value.0110                             ; Merged with display1_value.0001        ;
-; display3_value.0111                             ; Merged with display1_value.0001        ;
-; display3_value.1001                             ; Merged with display1_value.0001        ;
-; display3_value.1010                             ; Merged with display1_value.0001        ;
-; display3_value.1011                             ; Merged with display1_value.0001        ;
-; display3_value.1100                             ; Merged with display1_value.0001        ;
-; display3_value.1101                             ; Merged with display1_value.0001        ;
-; display3_value.1110                             ; Merged with display1_value.0001        ;
-; display3_value.1111                             ; Merged with display1_value.0001        ;
-; display4_value.0001                             ; Merged with display1_value.0001        ;
-; display4_value.0010                             ; Merged with display1_value.0001        ;
-; display4_value.0011                             ; Merged with display1_value.0001        ;
-; display4_value.0100                             ; Merged with display1_value.0001        ;
-; display4_value.0101                             ; Merged with display1_value.0001        ;
-; display4_value.0110                             ; Merged with display1_value.0001        ;
-; display4_value.0111                             ; Merged with display1_value.0001        ;
-; display4_value.1001                             ; Merged with display1_value.0001        ;
-; display4_value.1010                             ; Merged with display1_value.0001        ;
-; display4_value.1011                             ; Merged with display1_value.0001        ;
-; display4_value.1100                             ; Merged with display1_value.0001        ;
-; display4_value.1101                             ; Merged with display1_value.0001        ;
-; display4_value.1110                             ; Merged with display1_value.0001        ;
-; display4_value.1111                             ; Merged with display1_value.0001        ;
-; display5_value.0001                             ; Merged with display1_value.0001        ;
-; display5_value.0010                             ; Merged with display1_value.0001        ;
-; display5_value.0011                             ; Merged with display1_value.0001        ;
-; display5_value.0100                             ; Merged with display1_value.0001        ;
-; display5_value.0101                             ; Merged with display1_value.0001        ;
-; display5_value.0110                             ; Merged with display1_value.0001        ;
-; display5_value.0111                             ; Merged with display1_value.0001        ;
-; display5_value.1001                             ; Merged with display1_value.0001        ;
-; display5_value.1010                             ; Merged with display1_value.0001        ;
-; display5_value.1011                             ; Merged with display1_value.0001        ;
-; display5_value.1100                             ; Merged with display1_value.0001        ;
-; display5_value.1101                             ; Merged with display1_value.0001        ;
-; display5_value.1110                             ; Merged with display1_value.0001        ;
-; display5_value.1111                             ; Merged with display1_value.0001        ;
-; display6_value.0001                             ; Merged with display1_value.0001        ;
-; display6_value.0010                             ; Merged with display1_value.0001        ;
-; display6_value.0011                             ; Merged with display1_value.0001        ;
-; display6_value.0100                             ; Merged with display1_value.0001        ;
-; display6_value.0101                             ; Merged with display1_value.0001        ;
-; display6_value.0110                             ; Merged with display1_value.0001        ;
-; display6_value.0111                             ; Merged with display1_value.0001        ;
-; display6_value.1001                             ; Merged with display1_value.0001        ;
-; display6_value.1010                             ; Merged with display1_value.0001        ;
-; display6_value.1011                             ; Merged with display1_value.0001        ;
-; display6_value.1100                             ; Merged with display1_value.0001        ;
-; display6_value.1101                             ; Merged with display1_value.0001        ;
-; display6_value.1110                             ; Merged with display1_value.0001        ;
-; display6_value.1111                             ; Merged with display1_value.0001        ;
-; display2_value.0000                             ; Merged with display1_value.0000        ;
-; display3_value.0000                             ; Merged with display1_value.0000        ;
-; display4_value.0000                             ; Merged with display1_value.0000        ;
-; display5_value.0000                             ; Merged with display1_value.0000        ;
-; display6_value.0000                             ; Merged with display1_value.0000        ;
-; display1_value.0001                             ; Stuck at GND due to stuck port data_in ;
-; serial_bridge_address[14..31]                   ; Lost fanout                            ;
-; display1_value.0000                             ; Stuck at GND due to stuck port data_in ;
-; display1_counter[0..16]                         ; Lost fanout                            ;
-; Total Number of Removed Registers = 352         ;                                        ;
-+-------------------------------------------------+----------------------------------------+
-
-
-+-------------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                     ;
-+---------------------------+---------------------------+-----------------------------------------------------------------------------------------+
-; Register name             ; Reason for Removal        ; Registers Removed due to This Register                                                  ;
-+---------------------------+---------------------------+-----------------------------------------------------------------------------------------+
-; serial_bridge_address[31] ; Lost Fanouts              ; serial_bridge_address[30], serial_bridge_address[29], serial_bridge_address[28],        ;
-;                           ;                           ; serial_bridge_address[27], serial_bridge_address[26], serial_bridge_address[25],        ;
-;                           ;                           ; serial_bridge_address[24], serial_bridge_address[23], serial_bridge_address[22],        ;
-;                           ;                           ; serial_bridge_address[21], serial_bridge_address[20], serial_bridge_address[19],        ;
-;                           ;                           ; serial_bridge_address[18], serial_bridge_address[17], serial_bridge_address[16],        ;
-;                           ;                           ; serial_bridge_address[15], serial_bridge_address[14]                                    ;
-; display1_value.0001       ; Stuck at GND              ; display1_counter[0], display1_counter[1], display1_counter[2], display1_counter[3],     ;
-;                           ; due to stuck port data_in ; display1_counter[4], display1_counter[7], display1_counter[8], display1_counter[9],     ;
-;                           ;                           ; display1_counter[10], display1_counter[13], display1_counter[14], display1_counter[15], ;
-;                           ;                           ; display1_counter[16]                                                                    ;
-; display1_value.0000       ; Stuck at GND              ; display1_counter[5], display1_counter[6], display1_counter[11], display1_counter[12]    ;
-;                           ; due to stuck port data_in ;                                                                                         ;
-+---------------------------+---------------------------+-----------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                         ;
++----------------------+--------------------+-----------------------------------------------------------------------------------------+
+; Register name        ; Reason for Removal ; Registers Removed due to This Register                                                  ;
++----------------------+--------------------+-----------------------------------------------------------------------------------------+
+; __main___address[31] ; Lost Fanouts       ; __main___address[30], __main___address[29], __main___address[28], __main___address[27], ;
+;                      ;                    ; __main___address[26], __main___address[25], __main___address[24], __main___address[23], ;
+;                      ;                    ; __main___address[22], __main___address[21], __main___address[20], __main___address[19], ;
+;                      ;                    ; __main___address[18], __main___address[17], __main___address[16], __main___address[15], ;
+;                      ;                    ; __main___address[14]                                                                    ;
++----------------------+--------------------+-----------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -657,12 +278,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 554   ;
-; Number of registers using Synchronous Clear  ; 31    ;
-; Number of registers using Synchronous Load   ; 8     ;
+; Total registers                              ; 390   ;
+; Number of registers using Synchronous Clear  ; 5     ;
+; Number of registers using Synchronous Load   ; 3     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 333   ;
+; Number of registers using Clock Enable       ; 210   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -672,71 +293,77 @@ Encoding Type:  One-Hot
 +-----------------------------------------+---------+
 ; Inverted Register                       ; Fan out ;
 +-----------------------------------------+---------+
-; int_rst                                 ; 167     ;
-; adxl362_cs_storage[0]                   ; 3       ;
-; serial_bridge_count[7]                  ; 2       ;
-; serial_bridge_count[9]                  ; 2       ;
-; serial_bridge_count[10]                 ; 2       ;
-; serial_bridge_count[12]                 ; 2       ;
-; serial_bridge_count[15]                 ; 2       ;
-; serial_bridge_count[19]                 ; 2       ;
-; serial_bridge_count[20]                 ; 2       ;
-; serial_bridge_count[23]                 ; 2       ;
-; scratch_storage[3]                      ; 1       ;
-; scratch_storage[4]                      ; 1       ;
-; scratch_storage[5]                      ; 1       ;
-; scratch_storage[6]                      ; 1       ;
-; scratch_storage[9]                      ; 1       ;
-; scratch_storage[25]                     ; 1       ;
-; scratch_storage[14]                     ; 1       ;
-; scratch_storage[12]                     ; 1       ;
-; scratch_storage[10]                     ; 1       ;
-; scratch_storage[18]                     ; 1       ;
-; scratch_storage[21]                     ; 1       ;
-; scratch_storage[20]                     ; 1       ;
-; scratch_storage[28]                     ; 1       ;
-; Total number of inverted registers = 23 ;         ;
+; builder_int_rst                         ; 109     ;
+; __main___count[6]                       ; 2       ;
+; __main___count[8]                       ; 2       ;
+; __main___count[9]                       ; 2       ;
+; __main___count[11]                      ; 2       ;
+; __main___count[14]                      ; 2       ;
+; __main___count[18]                      ; 2       ;
+; __main___count[19]                      ; 2       ;
+; __main___count[22]                      ; 2       ;
+; __main___scratch_storage[3]             ; 1       ;
+; __main___scratch_storage[4]             ; 1       ;
+; __main___scratch_storage[5]             ; 1       ;
+; __main___scratch_storage[6]             ; 1       ;
+; __main___scratch_storage[9]             ; 1       ;
+; __main___scratch_storage[25]            ; 1       ;
+; __main___scratch_storage[18]            ; 1       ;
+; __main___scratch_storage[10]            ; 1       ;
+; __main___scratch_storage[20]            ; 1       ;
+; __main___scratch_storage[12]            ; 1       ;
+; __main___scratch_storage[28]            ; 1       ;
+; __main___scratch_storage[21]            ; 1       ;
+; __main___scratch_storage[14]            ; 1       ;
+; Total number of inverted registers = 22 ;         ;
 +-----------------------------------------+---------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                              ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                    ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------+
-; 3:1                ; 17 bits   ; 34 LEs        ; 34 LEs               ; 0 LEs                  ; Yes        ; |top|display1_counter[3]                                      ;
-; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |top|adxl362_miso_data[1]                                     ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |top|serial_bridge_rx_data[6]                                 ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|serial_bridge_tx_count[3]                                ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |top|csr_bankarray_interface3_bank_bus_dat_r[8]               ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |top|csr_bankarray_interface4_bank_bus_dat_r[5]               ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |top|leds_storage[7]                                          ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |top|adxl362_mosi_data[19]                                    ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|adxl362_clk_divider1[2]                                  ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|adxl362_control_storage[9]                               ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|adxl362_cs_storage[8]                                    ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top|reset_storage[1]                                         ;
-; 3:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |top|scratch_storage[17]                                      ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |top|adxl362_miso[18]                                         ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |top|adxl362_mosi_sel[4]                                      ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|serial_bridge_count[14]                                  ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |top|adxl362_count[4]                                         ;
-; 7:1                ; 7 bits    ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; Yes        ; |top|serial_bridge_tx_data[1]                                 ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |top|serial_bridge_bytes_count[1]                             ;
-; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|serial_bridge_address[0]                                 ;
-; 8:1                ; 24 bits   ; 120 LEs       ; 48 LEs               ; 72 LEs                 ; Yes        ; |top|serial_bridge_address[30]                                ;
-; 513:1              ; 15 bits   ; 5130 LEs      ; 30 LEs               ; 5100 LEs               ; Yes        ; |top|csr_bankarray_interface0_bank_bus_dat_r[26]              ;
-; 513:1              ; 15 bits   ; 5130 LEs      ; 45 LEs               ; 5085 LEs               ; Yes        ; |top|csr_bankarray_interface0_bank_bus_dat_r[6]               ;
-; 513:1              ; 2 bits    ; 684 LEs       ; 4 LEs                ; 680 LEs                ; Yes        ; |top|csr_bankarray_interface2_bank_bus_dat_r[0]               ;
-; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |top|scratch_storage[9]                                       ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |top|serial_bridge_count[23]                                  ;
-; 3:1                ; 96 bits   ; 192 LEs       ; 96 LEs               ; 96 LEs                 ; No         ; |top|display6_value                                           ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |top|serial_bridge_words_count_uartwishbonebridge_next_value1 ;
-; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; No         ; |top|csr_bankarray_sram_bus_adr[1]                            ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; No         ; |top|serial_bridge_data_uartwishbonebridge_next_value6        ;
-; 9:1                ; 4 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; No         ; |top|spimaster_state                                          ;
-; 12:1               ; 2 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |top|uartwishbonebridge_state                                 ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------+
+; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |top|__main___rx_data[3]                                        ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___tx_count[2]                                       ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |top|builder_basesoc_csr_bankarray_interface8_bank_bus_dat_r[3] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |top|builder_basesoc_csr_bankarray_interface2_bank_bus_dat_r[3] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |top|builder_basesoc_csr_bankarray_interface3_bank_bus_dat_r[3] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |top|builder_basesoc_csr_bankarray_interface4_bank_bus_dat_r[3] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |top|builder_basesoc_csr_bankarray_interface5_bank_bus_dat_r[3] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |top|builder_basesoc_csr_bankarray_interface6_bank_bus_dat_r[1] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |top|builder_basesoc_csr_bankarray_interface7_bank_bus_dat_r[2] ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |top|builder_basesoc_csr_bankarray_interface9_bank_bus_dat_r[2] ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |top|__main___leds_storage[2]                                   ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___display1_value[3]                                 ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___display2_value[0]                                 ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___display3_value[0]                                 ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___display4_value[2]                                 ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___display5_value[0]                                 ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___display6_value[2]                                 ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___display1_storage[0]                               ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___display2_storage[0]                               ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___display3_storage[0]                               ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___display4_storage[0]                               ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___display5_storage[3]                               ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___display6_storage[2]                               ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top|__main___reset_storage[0]                                  ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |top|__main___scratch_storage[8]                                ;
+; 4:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |top|__main___scratch_storage[19]                               ;
+; 4:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |top|__main___count[16]                                         ;
+; 7:1                ; 7 bits    ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; Yes        ; |top|__main___tx_data[5]                                        ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |top|__main___bytes_count[0]                                    ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|__main___address[2]                                        ;
+; 8:1                ; 24 bits   ; 120 LEs       ; 48 LEs               ; 72 LEs                 ; Yes        ; |top|__main___address[9]                                        ;
+; 513:1              ; 2 bits    ; 684 LEs       ; 4 LEs                ; 680 LEs                ; Yes        ; |top|builder_basesoc_csr_bankarray_interface1_bank_bus_dat_r[1] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___scratch_storage[6]                                ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; Yes        ; |top|__main___scratch_storage[28]                               ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |top|__main___count[19]                                         ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |top|__main___words_count_next_value1                           ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; No         ; |top|builder_basesoc_csr_bankarray_sram_bus_adr[1]              ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; No         ; |top|__main___data_next_value6                                  ;
+; 12:1               ; 2 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |top|builder_subfragments_state                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -744,28 +371,27 @@ Encoding Type:  One-Hot
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 77                          ;
-; cycloneiii_ff         ; 554                         ;
-;     ENA               ; 322                         ;
-;     ENA SCLR          ; 5                           ;
-;     ENA SLD           ; 6                           ;
-;     SCLR              ; 25                          ;
+; boundary_port         ; 70                          ;
+; cycloneiii_ff         ; 390                         ;
+;     ENA               ; 209                         ;
+;     ENA SLD           ; 1                           ;
+;     SCLR              ; 4                           ;
 ;     SCLR SLD          ; 1                           ;
 ;     SLD               ; 1                           ;
-;     plain             ; 194                         ;
-; cycloneiii_lcell_comb ; 850                         ;
-;     arith             ; 142                         ;
-;         2 data inputs ; 141                         ;
+;     plain             ; 174                         ;
+; cycloneiii_lcell_comb ; 669                         ;
+;     arith             ; 109                         ;
+;         2 data inputs ; 108                         ;
 ;         3 data inputs ; 1                           ;
-;     normal            ; 708                         ;
+;     normal            ; 560                         ;
 ;         0 data inputs ; 4                           ;
-;         1 data inputs ; 8                           ;
-;         2 data inputs ; 257                         ;
-;         3 data inputs ; 109                         ;
-;         4 data inputs ; 330                         ;
+;         1 data inputs ; 10                          ;
+;         2 data inputs ; 122                         ;
+;         3 data inputs ; 142                         ;
+;         4 data inputs ; 282                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 6.30                        ;
-; Average LUT depth     ; 3.37                        ;
+; Max LUT depth         ; 6.00                        ;
+; Average LUT depth     ; 3.19                        ;
 +-----------------------+-----------------------------+
 
 
@@ -797,129 +423,94 @@ Info: Running Quartus Prime Analysis & Synthesis
     Info: the sole purpose of programming logic devices manufactured by
     Info: Intel and sold by Intel or its authorized distributors.  Please
     Info: refer to the applicable agreement for further details.
-    Info: Processing started: Tue Mar  1 20:21:59 2022
+    Info: Processing started: Tue Mar 15 18:37:43 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off top -c top
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file top.v
     Info (12023): Found entity 1: top File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 20
 Info (12127): Elaborating entity "top" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at top.v(63): object "soc_rst" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 63
-Warning (10036): Verilog HDL or VHDL warning at top.v(64): object "cpu_rst" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 64
-Warning (10036): Verilog HDL or VHDL warning at top.v(68): object "scratch_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 68
-Warning (10036): Verilog HDL or VHDL warning at top.v(70): object "bus_errors_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 70
-Warning (10036): Verilog HDL or VHDL warning at top.v(71): object "bus_errors_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 71
-Warning (10036): Verilog HDL or VHDL warning at top.v(80): object "serial_bridge_tx_sink_last" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 80
-Warning (10036): Verilog HDL or VHDL warning at top.v(88): object "serial_bridge_rx_source_ready" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 88
-Warning (10036): Verilog HDL or VHDL warning at top.v(107): object "serial_bridge_wishbone_err" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 107
-Warning (10036): Verilog HDL or VHDL warning at top.v(121): object "leds_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 121
-Warning (10036): Verilog HDL or VHDL warning at top.v(123): object "switches_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 123
-Warning (10036): Verilog HDL or VHDL warning at top.v(124): object "switches_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 124
-Warning (10036): Verilog HDL or VHDL warning at top.v(126): object "buttons_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 126
-Warning (10036): Verilog HDL or VHDL warning at top.v(127): object "buttons_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 127
-Warning (10036): Verilog HDL or VHDL warning at top.v(131): object "adxl362_irq" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 131
-Warning (10036): Verilog HDL or VHDL warning at top.v(144): object "adxl362_status_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 144
-Warning (10036): Verilog HDL or VHDL warning at top.v(145): object "adxl362_status_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 145
-Warning (10036): Verilog HDL or VHDL warning at top.v(147): object "adxl362_mosi_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 147
-Warning (10036): Verilog HDL or VHDL warning at top.v(149): object "adxl362_miso_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 149
-Warning (10036): Verilog HDL or VHDL warning at top.v(150): object "adxl362_miso_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 150
-Warning (10036): Verilog HDL or VHDL warning at top.v(154): object "adxl362_cs_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 154
-Warning (10036): Verilog HDL or VHDL warning at top.v(157): object "adxl362_loopback_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 157
-Warning (10036): Verilog HDL or VHDL warning at top.v(257): object "basesoc_wishbone_cti" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 257
-Warning (10036): Verilog HDL or VHDL warning at top.v(258): object "basesoc_wishbone_bte" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 258
-Warning (10036): Verilog HDL or VHDL warning at top.v(266): object "csr_bankarray_csrbank0_control0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 266
-Warning (10036): Verilog HDL or VHDL warning at top.v(269): object "csr_bankarray_csrbank0_status_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 269
-Warning (10036): Verilog HDL or VHDL warning at top.v(274): object "csr_bankarray_csrbank0_mosi0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 274
-Warning (10036): Verilog HDL or VHDL warning at top.v(277): object "csr_bankarray_csrbank0_miso_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 277
-Warning (10036): Verilog HDL or VHDL warning at top.v(282): object "csr_bankarray_csrbank0_cs0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 282
-Warning (10036): Verilog HDL or VHDL warning at top.v(286): object "csr_bankarray_csrbank0_loopback0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 286
-Warning (10036): Verilog HDL or VHDL warning at top.v(294): object "csr_bankarray_csrbank1_in_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 294
-Warning (10036): Verilog HDL or VHDL warning at top.v(304): object "csr_bankarray_csrbank2_reset0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 304
-Warning (10036): Verilog HDL or VHDL warning at top.v(308): object "csr_bankarray_csrbank2_scratch0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 308
-Warning (10036): Verilog HDL or VHDL warning at top.v(311): object "csr_bankarray_csrbank2_bus_errors_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 311
-Warning (10036): Verilog HDL or VHDL warning at top.v(316): object "csr_bankarray_sram_bus_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 316
-Warning (10036): Verilog HDL or VHDL warning at top.v(317): object "csr_bankarray_sram_bus_dat_w" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 317
-Warning (10036): Verilog HDL or VHDL warning at top.v(329): object "csr_bankarray_csrbank3_out0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 329
-Warning (10036): Verilog HDL or VHDL warning at top.v(337): object "csr_bankarray_csrbank4_in_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 337
-Warning (10230): Verilog HDL assignment warning at top.v(371): truncated value with size 32 to match size of target (30) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 371
-Warning (10230): Verilog HDL assignment warning at top.v(381): truncated value with size 16 to match size of target (8) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 381
-Warning (10230): Verilog HDL assignment warning at top.v(384): truncated value with size 24 to match size of target (8) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 384
-Warning (10230): Verilog HDL assignment warning at top.v(387): truncated value with size 32 to match size of target (8) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 387
-Warning (10230): Verilog HDL assignment warning at top.v(407): truncated value with size 8 to match size of target (1) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 407
-Warning (10230): Verilog HDL assignment warning at top.v(503): truncated value with size 40 to match size of target (32) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 503
-Warning (10230): Verilog HDL assignment warning at top.v(527): truncated value with size 40 to match size of target (32) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 527
-Info (10264): Verilog HDL Case Statement information at top.v(491): all case item expressions in this case statement are onehot File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 491
-Info (10264): Verilog HDL Case Statement information at top.v(621): all case item expressions in this case statement are onehot File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 621
-Warning (10230): Verilog HDL assignment warning at top.v(1006): truncated value with size 30 to match size of target (14) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 1006
-Warning (10230): Verilog HDL assignment warning at top.v(1405): truncated value with size 33 to match size of target (32) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 1405
-Warning (10230): Verilog HDL assignment warning at top.v(1407): truncated value with size 33 to match size of target (32) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 1407
-Warning (10030): Net "mem.data_a" at top.v(1632) has no driver or initial value, using a default initial value '0' File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 1632
-Warning (10030): Net "mem.waddr_a" at top.v(1632) has no driver or initial value, using a default initial value '0' File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 1632
-Warning (10030): Net "mem.we_a" at top.v(1632) has no driver or initial value, using a default initial value '0' File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 1632
+Warning (10036): Verilog HDL or VHDL warning at top.v(56): object "__main___soc_rst" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 56
+Warning (10036): Verilog HDL or VHDL warning at top.v(57): object "__main___cpu_rst" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 57
+Warning (10036): Verilog HDL or VHDL warning at top.v(61): object "__main___scratch_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 61
+Warning (10036): Verilog HDL or VHDL warning at top.v(63): object "__main___bus_errors_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 63
+Warning (10036): Verilog HDL or VHDL warning at top.v(64): object "__main___bus_errors_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 64
+Warning (10036): Verilog HDL or VHDL warning at top.v(69): object "__main___tx_sink_last" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 69
+Warning (10036): Verilog HDL or VHDL warning at top.v(77): object "__main___rx_source_ready" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 77
+Warning (10036): Verilog HDL or VHDL warning at top.v(96): object "__main___wishbone_err" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 96
+Warning (10036): Verilog HDL or VHDL warning at top.v(110): object "__main___leds_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 110
+Warning (10036): Verilog HDL or VHDL warning at top.v(112): object "__main___switches_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 112
+Warning (10036): Verilog HDL or VHDL warning at top.v(113): object "__main___switches_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 113
+Warning (10036): Verilog HDL or VHDL warning at top.v(115): object "__main___buttons_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 115
+Warning (10036): Verilog HDL or VHDL warning at top.v(116): object "__main___buttons_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 116
+Warning (10036): Verilog HDL or VHDL warning at top.v(118): object "__main___display1_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 118
+Warning (10036): Verilog HDL or VHDL warning at top.v(120): object "__main___display1_write_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 120
+Warning (10036): Verilog HDL or VHDL warning at top.v(121): object "__main___display1_write_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 121
+Warning (10036): Verilog HDL or VHDL warning at top.v(127): object "__main___display2_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 127
+Warning (10036): Verilog HDL or VHDL warning at top.v(129): object "__main___display2_write_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 129
+Warning (10036): Verilog HDL or VHDL warning at top.v(130): object "__main___display2_write_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 130
+Warning (10036): Verilog HDL or VHDL warning at top.v(136): object "__main___display3_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 136
+Warning (10036): Verilog HDL or VHDL warning at top.v(138): object "__main___display3_write_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 138
+Warning (10036): Verilog HDL or VHDL warning at top.v(139): object "__main___display3_write_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 139
+Warning (10036): Verilog HDL or VHDL warning at top.v(145): object "__main___display4_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 145
+Warning (10036): Verilog HDL or VHDL warning at top.v(147): object "__main___display4_write_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 147
+Warning (10036): Verilog HDL or VHDL warning at top.v(148): object "__main___display4_write_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 148
+Warning (10036): Verilog HDL or VHDL warning at top.v(154): object "__main___display5_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 154
+Warning (10036): Verilog HDL or VHDL warning at top.v(156): object "__main___display5_write_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 156
+Warning (10036): Verilog HDL or VHDL warning at top.v(157): object "__main___display5_write_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 157
+Warning (10036): Verilog HDL or VHDL warning at top.v(163): object "__main___display6_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 163
+Warning (10036): Verilog HDL or VHDL warning at top.v(165): object "__main___display6_write_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 165
+Warning (10036): Verilog HDL or VHDL warning at top.v(166): object "__main___display6_write_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 166
+Warning (10036): Verilog HDL or VHDL warning at top.v(213): object "builder_basesoc_basesoc_wishbone_cti" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 213
+Warning (10036): Verilog HDL or VHDL warning at top.v(214): object "builder_basesoc_basesoc_wishbone_bte" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 214
+Warning (10036): Verilog HDL or VHDL warning at top.v(221): object "builder_basesoc_csr_bankarray_csrbank0_in_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 221
+Warning (10036): Verilog HDL or VHDL warning at top.v(231): object "builder_basesoc_csr_bankarray_csrbank1_reset0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 231
+Warning (10036): Verilog HDL or VHDL warning at top.v(235): object "builder_basesoc_csr_bankarray_csrbank1_scratch0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 235
+Warning (10036): Verilog HDL or VHDL warning at top.v(238): object "builder_basesoc_csr_bankarray_csrbank1_bus_errors_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 238
+Warning (10036): Verilog HDL or VHDL warning at top.v(248): object "builder_basesoc_csr_bankarray_csrbank2_value0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 248
+Warning (10036): Verilog HDL or VHDL warning at top.v(257): object "builder_basesoc_csr_bankarray_csrbank3_value0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 257
+Warning (10036): Verilog HDL or VHDL warning at top.v(266): object "builder_basesoc_csr_bankarray_csrbank4_value0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 266
+Warning (10036): Verilog HDL or VHDL warning at top.v(275): object "builder_basesoc_csr_bankarray_csrbank5_value0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 275
+Warning (10036): Verilog HDL or VHDL warning at top.v(284): object "builder_basesoc_csr_bankarray_csrbank6_value0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 284
+Warning (10036): Verilog HDL or VHDL warning at top.v(293): object "builder_basesoc_csr_bankarray_csrbank7_value0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 293
+Warning (10036): Verilog HDL or VHDL warning at top.v(297): object "builder_basesoc_csr_bankarray_sram_bus_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 297
+Warning (10036): Verilog HDL or VHDL warning at top.v(298): object "builder_basesoc_csr_bankarray_sram_bus_dat_w" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 298
+Warning (10036): Verilog HDL or VHDL warning at top.v(310): object "builder_basesoc_csr_bankarray_csrbank8_out0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 310
+Warning (10036): Verilog HDL or VHDL warning at top.v(318): object "builder_basesoc_csr_bankarray_csrbank9_in_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 318
+Warning (10230): Verilog HDL assignment warning at top.v(352): truncated value with size 32 to match size of target (30) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 352
+Warning (10230): Verilog HDL assignment warning at top.v(362): truncated value with size 16 to match size of target (8) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 362
+Warning (10230): Verilog HDL assignment warning at top.v(365): truncated value with size 24 to match size of target (8) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 365
+Warning (10230): Verilog HDL assignment warning at top.v(368): truncated value with size 32 to match size of target (8) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 368
+Warning (10230): Verilog HDL assignment warning at top.v(388): truncated value with size 8 to match size of target (1) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 388
+Warning (10230): Verilog HDL assignment warning at top.v(484): truncated value with size 40 to match size of target (32) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 484
+Warning (10230): Verilog HDL assignment warning at top.v(508): truncated value with size 40 to match size of target (32) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 508
+Info (10264): Verilog HDL Case Statement information at top.v(472): all case item expressions in this case statement are onehot File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 472
+Warning (10230): Verilog HDL assignment warning at top.v(922): truncated value with size 30 to match size of target (14) File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 922
+Warning (10030): Net "mem.data_a" at top.v(1482) has no driver or initial value, using a default initial value '0' File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 1482
+Warning (10030): Net "mem.waddr_a" at top.v(1482) has no driver or initial value, using a default initial value '0' File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 1482
+Warning (10030): Net "mem.we_a" at top.v(1482) has no driver or initial value, using a default initial value '0' File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 1482
 Critical Warning (127005): Memory depth (64) in the design file differs from memory depth (50) in the Memory Initialization File "/home/alexandre/multi-riscv-p2p/lab3/build/gateware/db/top.ram0_top_1fc36.hdl.mif" -- setting initial value for remaining addresses to 0
 Info (276014): Found 1 instances of uninferred RAM logic
-    Info (276013): RAM logic "mem" is uninferred because MIF is not supported for the selected family File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 1632
+    Info (276013): RAM logic "mem" is uninferred because MIF is not supported for the selected family File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 1482
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "display_1[0]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 50
-    Warning (13410): Pin "display_1[1]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 50
-    Warning (13410): Pin "display_1[2]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 50
-    Warning (13410): Pin "display_1[3]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 50
-    Warning (13410): Pin "display_1[4]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 50
-    Warning (13410): Pin "display_1[5]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 50
-    Warning (13410): Pin "display_1[6]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 50
-    Warning (13410): Pin "display_1[7]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 50
-    Warning (13410): Pin "display_2[0]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 51
-    Warning (13410): Pin "display_2[1]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 51
-    Warning (13410): Pin "display_2[2]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 51
-    Warning (13410): Pin "display_2[3]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 51
-    Warning (13410): Pin "display_2[4]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 51
-    Warning (13410): Pin "display_2[5]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 51
-    Warning (13410): Pin "display_2[6]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 51
-    Warning (13410): Pin "display_2[7]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 51
-    Warning (13410): Pin "display_3[0]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 52
-    Warning (13410): Pin "display_3[1]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 52
-    Warning (13410): Pin "display_3[2]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 52
-    Warning (13410): Pin "display_3[3]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 52
-    Warning (13410): Pin "display_3[4]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 52
-    Warning (13410): Pin "display_3[5]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 52
-    Warning (13410): Pin "display_3[6]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 52
-    Warning (13410): Pin "display_3[7]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 52
-    Warning (13410): Pin "display_4[0]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 53
-    Warning (13410): Pin "display_4[1]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 53
-    Warning (13410): Pin "display_4[2]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 53
-    Warning (13410): Pin "display_4[3]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 53
-    Warning (13410): Pin "display_4[4]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 53
-    Warning (13410): Pin "display_4[5]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 53
-    Warning (13410): Pin "display_4[6]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 53
-    Warning (13410): Pin "display_4[7]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 53
-    Warning (13410): Pin "display_5[0]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 54
-    Warning (13410): Pin "display_5[1]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 54
-    Warning (13410): Pin "display_5[2]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 54
-    Warning (13410): Pin "display_5[3]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 54
-    Warning (13410): Pin "display_5[4]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 54
-    Warning (13410): Pin "display_5[5]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 54
-    Warning (13410): Pin "display_5[6]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 54
-    Warning (13410): Pin "display_5[7]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 54
-    Warning (13410): Pin "display_6[0]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 56
-    Warning (13410): Pin "display_6[1]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 56
-    Warning (13410): Pin "display_6[2]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 56
-    Warning (13410): Pin "display_6[3]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 56
-    Warning (13410): Pin "display_6[4]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 56
-    Warning (13410): Pin "display_6[5]" is stuck at GND File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 56
-    Warning (13410): Pin "display_6[6]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 56
-    Warning (13410): Pin "display_6[7]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 56
+    Warning (13410): Pin "display_1[7]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 42
+    Warning (13410): Pin "display_2[7]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 43
+    Warning (13410): Pin "display_3[7]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 44
+    Warning (13410): Pin "display_4[7]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 45
+    Warning (13410): Pin "display_5[7]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 46
+    Warning (13410): Pin "display_6[7]" is stuck at VCC File: /home/alexandre/multi-riscv-p2p/lab3/build/gateware/top.v Line: 47
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 70 registers lost all their fanouts during netlist optimizations.
+Info (17049): 21 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1097 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 15 input pins
-    Info (21059): Implemented 62 output pins
-    Info (21061): Implemented 1020 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 101 warnings
-    Info: Peak virtual memory: 944 megabytes
-    Info: Processing ended: Tue Mar  1 20:22:22 2022
-    Info: Elapsed time: 00:00:23
-    Info: Total CPU time (on all processors): 00:00:31
+Info (21057): Implemented 821 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 12 input pins
+    Info (21059): Implemented 58 output pins
+    Info (21061): Implemented 751 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 67 warnings
+    Info: Peak virtual memory: 931 megabytes
+    Info: Processing ended: Tue Mar 15 18:38:24 2022
+    Info: Elapsed time: 00:00:41
+    Info: Total CPU time (on all processors): 00:00:29
 
 
