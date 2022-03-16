@@ -1,0 +1,1 @@
+Info (10281): Verilog HDL Declaration information at top.v(80): object "vexriscv" differs only in case from object "VexRiscv" in the same scope File: /home/alexandre/multi-riscv-p2p/twoCores/build/gateware/top.v Line: 80
