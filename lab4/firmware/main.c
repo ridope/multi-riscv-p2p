@@ -73,7 +73,8 @@ static void help(void)
 	puts("reboot                          - reboot CPU");
 	puts("display                         - display test");
 	puts("led                             - led test");
-	puts("switch test			- switch test");
+	puts("switch_test			- switch test");
+	puts("knight_rider			- knight rider test");
 }
 
 static void reboot(void)
@@ -87,6 +88,12 @@ static void display_test(void)
 
 	display1_value_write(1);
 	display1_write_write(1);
+	display2_value_write(1);
+	display2_write_write(2);
+	display3_value_write(1);
+	display3_write_write(3);
+	display4_value_write(1);
+	display4_write_write(4);
 }
 
 static void led_test(void)
@@ -101,11 +108,23 @@ static void led_test(void)
 
 static void switch_test(void)
 {
+	printf("switch_test...\n");
 	int numberSwitch = atoi(switches_in_read);
 	printf(numberSwitch);
 }
 
 
+static void knight_rider(void)
+{
+	int i;
+	printf("knight rider test...\n");
+	for(i=0; i<32; i++) {
+		leds_out_write(2^i);
+		busy_wait(1);
+	}
+
+
+}
 
 static void console_service(void)
 {
@@ -125,6 +144,8 @@ static void console_service(void)
 		led_test();
 	else if(strcmp(token,"switch_test") ==0)
 		switch_test();
+	else if(strcmp(token,"knight_rider") ==0)
+		knight_rider();
 	prompt();
 }
 
