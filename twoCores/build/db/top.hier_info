@@ -1,0 +1,6 @@
+|top
+serial_tx => ~NO_FANOUT~
+serial_rx => ~NO_FANOUT~
+clk50 => ~NO_FANOUT~
+
+

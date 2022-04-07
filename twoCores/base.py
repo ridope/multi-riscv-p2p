@@ -93,17 +93,6 @@ _io_2 = [
 	),
         
 ]
-
-
-# Platform
-
-class Platform(AlteraPlatform):
-	default_clk_name = "clk50"
-	default_clk_period = 1e9/50e6
-	create_rbf = False
-	
-	def __init__(self):
-        	AlteraPlatform.__init__(self, "10M50DAF484C7G", _io)
         	
 # Design -------------------------------------------------------------------------------------------
 
@@ -123,6 +112,7 @@ class CPUBlock(Module):
         bus_data_width           = 32,
         bus_address_width        = 32,
         bus_timeout              = 1e6,
+        bus_reserved_regions	 = {},
 
         # CPU parameters
         cpu_type                 = "vexriscv",
@@ -172,8 +162,7 @@ class CPUBlock(Module):
 
         # Controller parameters
         with_ctrl                = True,
-
-		irq_n_irqs           = irq_n_irqs,
+        
         irq_reserved_irqs    = {},
 		
         # Others
@@ -214,7 +203,7 @@ class CPUBlock(Module):
             alignment     = 32,
             paging        = csr_paging,
             ordering      = csr_ordering,
-            reserved_csrs = csr_reserved_csrs,
+            reserved_csrs = self.csr_map,
         )
 
         # SoC IRQ Handler --------------------------------------------------------------------------
@@ -434,6 +423,14 @@ class CPUBlock(Module):
         setattr(self.submodules, name, Timer())
         if self.irq.enabled:
             self.irq.add(name, use_loc_if_exists=True)
+            
+    def add_identifier(self, name="identifier", identifier="LiteX SoC", with_build_time=True):
+        from litex.soc.cores.identifier import Identifier
+        self.check_if_exists(name)
+        if with_build_time:
+            identifier += " " + build_time()
+            self.add_config("WITH_BUILD_TIME")
+        setattr(self.submodules, name, Identifier(identifier))
             
 
     # Add UART -------------------------------------------------------------------------------------
@@ -698,18 +695,28 @@ class CPUBlock(Module):
         kwargs.update({"build_name": self.build_name})
         return self.platform.build(self, *args, **kwargs)
 
+
+# Platform
+
+class Platform(AlteraPlatform):
+	default_clk_name = "clk50"
+	default_clk_period = 1e9/50e6
+	create_rbf = False
+	
+	def __init__(self):
+        	AlteraPlatform.__init__(self, "10M50DAF484C7G", _io)
+
 # Create our platform (fpga interface)
 
 platform = Platform()
 
-class AMP():
-	Core0 = CPUBlock(self,platform, clk_freq = 50e6,
+class AMP(Module):
+	Core0 = CPUBlock(platform, sys_clk_freq = 50e6,
 		# Bus parameters
 		bus_standard             = "wishbone",
 		bus_data_width           = 32,
 		bus_address_width        = 32,
 		bus_timeout              = 1e6,
-		bus_reserved_regions 	 = {},
 
 		# CPU parameters
 		cpu_type                 = "vexriscv",
@@ -722,16 +729,16 @@ class AMP():
 		cfu_filename             = None,
 
 		# ROM parameters
-		integrated_rom_size      = 0,
+		integrated_rom_size      = 0x2000,
 		integrated_rom_mode      = "r",
 		integrated_rom_init      = [],
 
 		# SRAM parameters
-		integrated_sram_size     = 0x2000,
+		integrated_sram_size     = 0x1000,
 		integrated_sram_init     = [],
 
 		# MAIN_RAM parameters
-		integrated_main_ram_size = 0,
+		integrated_main_ram_size = 0x1000,
 		integrated_main_ram_init = [],
 
 		# CSR parameters
@@ -749,96 +756,200 @@ class AMP():
 		ident_version            = False,
 
 		# UART parameters
-		with_uart                = True,
 		uart_name                = "serial",
 		uart_baudrate            = 115200,
 		uart_fifo_depth          = 16,
+		
+	)
+	
+	Core1 = CPUBlock(platform, sys_clk_freq = 50e6,
+		# Bus parameters
+		bus_standard             = "wishbone",
+		bus_data_width           = 32,
+		bus_address_width        = 32,
+		bus_timeout              = 1e6,
 
-		# Timer parameters
-		with_timer               = True,
-		timer_uptime             = False,
+		# CPU parameters
+		cpu_type                 = "vexriscv",
+		cpu_reset_address        = None,
+		cpu_variant              = None,
+		cpu_cls                  = None,
+		cpu_cfu                  = None,
 
-		# Controller parameters
-		with_ctrl                = True)
-					
-	Core0.cpu_type     = cpu_type
-	Core0.cpu_variant  = cpu_variant
-	Core0.cpu_cls      = cpu_cls
-					
-#	Core1 = CPUBlock(platform ,clk_freq = 50e6) #TOFIX: add ram start and size as parameter 
-	
-	integrated_rom_init = get_mem_data(integrated_rom_init, "little") # FIXME: Endianness.
-	integrated_rom_size = 4*len(integrated_rom_init)
-	
-	self.mem_regions = self.bus.regions
-	self.clk_freq    = self.sys_clk_freq
-	self.mem_map     = self.mem_map
-	self.config      = {}
-	self.cpu_type     = cpu_type
-	self.cpu_variant  = cpu_variant
-	self.cpu_cls      = cpu_cls
-	
-	self.integrated_sram_size = integrated_sram_size
-	
-	self.integrated_main_ram_size = integrated_main_ram_size
-	self.csr_data_width = csr_data_width
-	
-	self.wb_slaves = {}
+		# CFU parameters
+		cfu_filename             = None,
 
-    # Modules instances ------------------------------------------------------------------------
-    
-    # Add SoCController
-	Core0.add_controller("ctrl")
+		# ROM parameters
+		integrated_rom_size      = 0x2000,
+		integrated_rom_mode      = "r",
+		integrated_rom_init      = 0x6000,
+
+		# SRAM parameters
+		integrated_sram_size     = 0x1000,
+		integrated_sram_init     = 0x8000,
+
+		# MAIN_RAM parameters
+		integrated_main_ram_size = 0x1000,
+		integrated_main_ram_init = 0x9000,
+
+		# CSR parameters
+		csr_data_width           = 32,
+		csr_address_width        = 14,
+		csr_paging               = 0x800,
+		csr_ordering             = "big",
+
+		# Interrupt parameters
+		irq_n_irqs               = 32,
+		irq_reserved_irqs    = {},
+		
+		# Identifier parameters
+		ident                    = "",
+		ident_version            = False,
+
+		# UART parameters
+		uart_name                = "serial",
+		uart_baudrate            = 115200,
+		uart_fifo_depth          = 16,
+		
+	)
+	
+	# Memory regions for CPU 0
+	# ROM parameters
+	Core0.integrated_rom_size      = 0x2000
+	Core0.integrated_rom_mode      = "r"
+	Core0.integrated_rom_init      = 0x0000
+
+	# SRAM parameters
+	Core0.integrated_sram_size     = 0x1000
+	Core0.integrated_sram_init     = 0x3000
+
+	# MAIN_RAM parameters
+	Core0.integrated_main_ram_size = 0x1000
+	Core0.integrated_main_ram_init = 0x9000
+	
+	# Memory regions for CPU 1
+	
+		# ROM parameters
+	Core1.integrated_rom_size      = 0x2000
+	Core1.integrated_rom_mode      = "r"
+	Core1.integrated_rom_init      = 0x16000
+
+	# SRAM parameters
+	Core1.integrated_sram_size     = 0x1000
+	Core1.integrated_sram_init     = 0x18000
+
+	# MAIN_RAM parameters
+	Core1.integrated_main_ram_size = 0x1000
+	Core1.integrated_main_ram_init = 0x19000
+	
+	Core0.mem_regions = Core0.bus.regions
+	Core0.clk_freq    = Core0.sys_clk_freq
+	Core0.config      = {}	
+	Core0.wb_slaves = {}
+	
+	Core1.mem_regions = Core1.bus.regions
+	Core1.clk_freq    = Core1.sys_clk_freq
+	Core1.config      = {}	
+	Core1.wb_slaves = {}
+	
+	Core0.mem_map       = {
+	"rom":      0x00000000,
+	"sram":     0x00000000,
+	"main_ram": 0x10000000,
+	}
+	
+	Core1.mem_map       = {
+	"rom":      0x00000000,
+	"sram":     0x00000000,
+	"main_ram": 0x00000000,
+	}
+	
+	ident                    = ""
+	ident_version            = False
+
+	# Modules instances ------------------------------------------------------------------------
+	
+	
+	# Add SoCController
+	Core0.add_controller("ctrl0")
 	
 	Core0.add_cpu(
-    	name          = str(cpu_type),
-        variant       = "standard" if cpu_variant is None else cpu_variant,
-        reset_address = None if integrated_rom_size else cpu_reset_address,
-        cls           = cpu_cls,
-        cfu           = cpu_cfu)
-        
-    #if Core0.irq.enabled:
-	for name, loc in Core0.interrupt_map.items():
-		self.irq.add(name, loc)
-		
-	Core0.add_rom("rom",
-        origin   = self.cpu.reset_address,
-        size     = integrated_rom_size,
-        contents = integrated_rom_init,
-        mode     = integrated_rom_mode)
-        
-    Core0.add_ram("sram",
-    	origin = self.mem_map["sram"],
-    	size   = integrated_sram_size)
-    	
-	Core0.add_ram("main_ram",
-        origin   = self.mem_map["main_ram"],
-        size     = integrated_main_ram_size,
-        contents = integrated_main_ram_init)
+		name          = "vexriscv",
+	    variant       = "standard",
+	    reset_address = None,
+	    cls           = None,
+	    cfu           = None)
+	    
+	Core0.add_rom("rom_core0",
+	    origin   = Core0.cpu.reset_address,
+	    size     = Core0.integrated_rom_size,
+	    contents = Core0.integrated_rom_init,
+	    mode     = Core0.integrated_rom_mode)
+	    
+	Core0.add_ram("sram_core0",
+		origin = Core0.mem_map["sram"],
+	    size   = Core0.integrated_sram_size)
+	    
+	Core0.add_ram("main_ram_core0",
+		origin = Core0.mem_map["main_ram"],
+	    size   = Core0.integrated_main_ram_size,
+	    contents = Core0.integrated_main_ram_init)
+	
+	Core0.uart_name                = "serial"
+	Core0.uart_baudrate            = 115200
+	Core0.uart_fifo_depth          = 16
+	
+	Core0.add_identifier("identifier", identifier=ident, with_build_time=ident_version)
+	Core0.add_uart(name=Core0.uart_name, baudrate=Core0.uart_baudrate, fifo_depth=Core0.uart_fifo_depth) #or add as a submodule?
+	uart_tx_core0 = platform.request("uart_tx")
+    uart_rx_core0 = platform.request("uart_rx")
+	Core0.add_timer(name="timer0")
+	    
+	    
+	#Core 1 main components
+	
+	Core1.add_controller("ctrl1")
+	
+	Core1.add_cpu(
+		name          = "vexriscv",
+	    variant       = "standard",
+	    reset_address = None,
+	    cls           = None,
+	    cfu           = None)
+	    
+	Core1.add_rom("rom_core1",
+	    origin   = Core1.cpu.reset_address,
+	    size     = Core1.integrated_rom_size,
+	    contents = Core1.integrated_rom_init,
+	    mode     = Core1.integrated_rom_mode)
+	    
+	Core1.add_ram("sram_core1",
+		origin = Core1.mem_map["sram"],
+	    size   = Core1.integrated_sram_size)
+	    
+	Core1.add_ram("main_ram_core1",
+		origin = Core1.mem_map["main_ram"],
+	    size   = Core1.integrated_main_ram_size,
+	    contents = Core1.integrated_main_ram_init)
+	
+	Core1.uart_name                = "serial"
+	Core1.uart_baudrate            = 115200
+	Core1.uart_fifo_depth          = 16
+	
+	Core1.add_identifier("identifier", identifier=ident, with_build_time=ident_version)
+	#Core1.add_uart(name=Core1.uart_name, baudrate=Core1.uart_baudrate, fifo_depth=Core1.uart_fifo_depth) as submodule?
+	Core1.add_timer(name="timer1")
+	
+	
+	self.comb += [
+        # UART connection
+    	Core0.uart_tx_core0.eq(Core1.uart_rx_core1),
+        Core0.uart_rx_core0.eq(Core1.uart_tx_core1)
+        ]
 
-    # Add Identifier
-    if ident != "":
-        Core0.add_identifier("identifier", identifier=ident, with_build_time=ident_version)
-
-    # Add UART
-    if with_uart:
-        Core0.add_uart(name=uart_name, baudrate=uart_baudrate, fifo_depth=uart_fifo_depth)
-
-    # Add Timer
-    if with_timer:
-    	Core0.add_timer(name="timer0")
-        if timer_uptime:
-            Core0.timer0.add_uptime()
-
-
-
-
-soc = AMP(platform)
-
+module = AMP()
+platform.build(module)
 # Build --------------------------------------------------------------------------------------------
 
-builder = Builder(soc, output_dir="build", csr_csv="test/csr.csv")
-builder.build(build_name="top")
-
-
-
+#builder = Builder(soc, output_dir="build", csr_csv="test/csr.csv")
+#builder.build(build_name="top")

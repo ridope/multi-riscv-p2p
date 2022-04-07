@@ -1,0 +1,10 @@
+set_global_assignment -name DEVICE 10M50DAF484C7G
+set_global_assignment -name SYSTEMVERILOG_FILE /home/alexandre/multi-riscv-p2p/twoCores/build/top.v -library work
+set_global_assignment -name top_level_entity top
+set_location_assignment -comment "serial:0.tx" -to serial_tx Pin_V10
+set_instance_assignment -name io_standard -comment "serial:0.tx" "3.3-V LVTTL" -to serial_tx
+set_location_assignment -comment "serial:0.rx" -to serial_rx Pin_W10
+set_instance_assignment -name io_standard -comment "serial:0.rx" "3.3-V LVTTL" -to serial_rx
+set_location_assignment -comment "clk50:0" -to clk50 Pin_N14
+set_instance_assignment -name io_standard -comment "clk50:0" "3.3-V LVTTL" -to clk50
+set_global_assignment -name SDC_FILE top.sdc
