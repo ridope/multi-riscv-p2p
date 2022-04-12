@@ -1,0 +1,66 @@
+{
+	"csr_map"       : {},
+    "interrupt_map" : {},
+    "mem_map"      : {
+        			"rom" : 0x00000000,
+        			"sram":  0x01000000,
+        			"main_ram": 0x40000000
+    	},
+    "bus_standard"             : "wishbone",
+    "bus_data_width"           : 32,
+    "bus_address_width"        : 32,
+    "bus_timeout"              : 1e6,
+    "bus_reserved_regions"	 : {},
+​
+    // CPU parameters
+    "cpu_type"                 : "vexriscv",
+    "cpu_reset_address"        : null,
+    "cpu_variant"              : null,
+    "cpu_cls"                  : null,
+    "cpu_cfu"                  : null,
+​
+    // CFU parameters
+    "cfu_filename"             : null,
+​
+    // ROM parameters
+    "integrated_rom_size"      : 0,
+    "integrated_rom_mode"      : "r",
+    "integrated_rom_init"      : [],
+​
+    // SRAM parameters
+    "integrated_sram_size"     : 0x2000,
+    "integrated_sram_init"     : [],
+​
+    // MAIN_RAM parameters
+    "integrated_main_ram_size" : 0,
+    "integrated_main_ram_init" : [],
+​
+    // CSR parameters
+    "csr_data_width"           : 32,
+    "csr_address_width"        : 14,
+    "csr_paging"               : 0x800,
+    "csr_ordering"             : "big",
+​
+    // Interrupt parameters
+    "irq_n_irqs"               : 32,
+​
+    // Identifier parameters
+    "ident"                    : "",
+    "ident_version"            : false,
+​
+    // UART parameters
+    "with_uart"                : true,
+    "uart_name"                : "serial",
+    "uart_baudrate"            : 115200,
+    "uart_fifo_depth"          : 16,
+​
+    // Timer parameters
+    "with_timer"               : true,
+    "timer_uptime"             : false,
+​
+    // Controller parameters
+    "with_ctrl"                : true,
+        
+    "irq_reserved_irqs"    : {}
+​
+}
