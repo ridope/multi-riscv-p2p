@@ -17,9 +17,7 @@ from litex.soc.integration.builder import *
 from litex.soc.cores.uart import UARTWishboneBridge
 from litex.soc.cores.cpu import *
 from litex.soc.integration.soc import *
-import json
 
-args=json.load(cpu_parameters.json)
 
 # IO's
 
@@ -768,12 +766,11 @@ class AMP():
         
 		self.platform = platform
 		self.sys_clk_freq = sys_clk_freq
-		self.args = args
 
-		core0 = CPUBlock(self.platform, self.sys_clk_freq, self.args)
+		core0 = CPUBlock(self.platform, self.sys_clk_freq)
 			
 		
-		Core1 = CPUBlock(self.platform, self.sys_clk_freq, self.args)
+		core1 = CPUBlock(self.platform, self.sys_clk_freq)
 		
 		# Memory regions for CPU 0
 		# ROM parameters
@@ -792,27 +789,27 @@ class AMP():
 		# Memory regions for CPU 1
 		
 			# ROM parameters
-		Core1.integrated_rom_size      = 0x2000
-		Core1.integrated_rom_mode      = "r"
-		Core1.integrated_rom_init      = 0x16000
+		core1.integrated_rom_size      = 0x2000
+		core1.integrated_rom_mode      = "r"
+		core1.integrated_rom_init      = 0x16000
 
 		# SRAM parameters
-		Core1.integrated_sram_size     = 0x1000
-		Core1.integrated_sram_init     = 0x18000
+		core1.integrated_sram_size     = 0x1000
+		core1.integrated_sram_init     = 0x18000
 
 		# MAIN_RAM parameters
-		Core1.integrated_main_ram_size = 0x1000
-		Core1.integrated_main_ram_init = 0x19000
+		core1.integrated_main_ram_size = 0x1000
+		core1.integrated_main_ram_init = 0x19000
 		
 		core0.mem_regions = core0.bus.regions
 		core0.clk_freq    = core0.sys_clk_freq
 		core0.config      = {}	
 		core0.wb_slaves = {}
 		
-		Core1.mem_regions = Core1.bus.regions
-		Core1.clk_freq    = Core1.sys_clk_freq
-		Core1.config      = {}	
-		Core1.wb_slaves = {}
+		core1.mem_regions = Core1.bus.regions
+		core1.clk_freq    = Core1.sys_clk_freq
+		core1.config      = {}	
+		core1.wb_slaves = {}
 		
 		core0.mem_map       = {
 		"rom":      0x00000000,
@@ -820,7 +817,7 @@ class AMP():
 		"main_ram": 0x10000000,
 		}
 		
-		Core1.mem_map       = {
+		core1.mem_map       = {
 		"rom":      0x00000000,
 		"sram":     0x00000000,
 		"main_ram": 0x00000000,
@@ -870,37 +867,37 @@ class AMP():
 		    
 		#Core 1 main components
 		
-		Core1.add_controller("ctrl1")
+		core1.add_controller("ctrl1")
 		
-		Core1.add_cpu(
+		core1.add_cpu(
 			name          = "vexriscv",
 			variant       = "standard",
 			reset_address = None,
 			cls           = None,
 			cfu           = None)
 		    
-		Core1.add_rom("rom_core1",
+		core1.add_rom("rom_core1",
 			origin   = Core1.cpu.reset_address,
 			size     = Core1.integrated_rom_size,
 			contents = Core1.integrated_rom_init,
 			mode     = Core1.integrated_rom_mode)
 		    
-		Core1.add_ram("sram_core1",
+		core1.add_ram("sram_core1",
 			origin = Core1.mem_map["sram"],
 			size   = Core1.integrated_sram_size)
 		    
-		Core1.add_ram("main_ram_core1",
+		core1.add_ram("main_ram_core1",
 			origin = Core1.mem_map["main_ram"],
 			size   = Core1.integrated_main_ram_size,
 			contents = Core1.integrated_main_ram_init)
 		
-		Core1.uart_name                = "serial"
-		Core1.uart_baudrate            = 115200
-		Core1.uart_fifo_depth          = 16
+		core1.uart_name                = "serial"
+		core1.uart_baudrate            = 115200
+		core1.uart_fifo_depth          = 16
 		
-		Core1.add_identifier("identifier", identifier=ident, with_build_time=ident_version)
+		core1.add_identifier("identifier", identifier=ident, with_build_time=ident_version)
 		#Core1.add_uart(name=Core1.uart_name, baudrate=Core1.uart_baudrate, fifo_depth=Core1.uart_fifo_depth) as submodule?
-		Core1.add_timer(name="timer1")
+		core1.add_timer(name="timer1")
 		
 		
 		self.comb += [
