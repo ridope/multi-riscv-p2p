@@ -675,7 +675,8 @@ class CPUBlock():
                             colorer(name)))
                         raise SoCError()
                     self.comb += self.cpu.interrupt[loc].eq(ev.irq)
-                self.add_constant(name + "_INTERRUPT", loc)
+                self.add_constant(name + "_INTERRUPT", loc)           
+        
 
 
 # Platform
@@ -685,16 +686,21 @@ class Platform(AlteraPlatform):
 	default_clk_period = 1e9/50e6
 	create_rbf = False
 	
-def __init__(self):
-	AlteraPlatform.__init__(self, "10M50DAF484C7G", _io)
+	def __init__(self):
+        	AlteraPlatform.__init__(self, "10M50DAF484C7G", _io)
+        	
+# Design -------------------------------------------------------------------------------------------
 
 # Create our platform (fpga interface)
-
 platform = Platform()
+
+# --------------------------------------------------------------------------------------------------
+
+
 
 class AMP():
 
-	def __init__(self, platform, sys_clk_freq,
+	def __init__(self, platform, sys_clk_freq = 50e6,
 		csr_map       = {},
 		interrupt_map = {},
 		mem_map       = {
@@ -906,9 +912,9 @@ class AMP():
 		#Core0.uart_rx_core0.eq(Core1.uart_tx_core1)
         ]
 
-module = AMP()
-platform.build(module)
+soc = AMP(platform)
+
 # Build --------------------------------------------------------------------------------------------
 
-#builder = Builder(soc, output_dir="build", csr_csv="test/csr.csv")
-#builder.build(build_name="top")
+builder = Builder(soc, output_dir="build", csr_csv="test/csr.csv")
+builder.build(build_name="top")
