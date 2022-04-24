@@ -106,7 +106,7 @@ _io_2 = [
         	
 # Design -------------------------------------------------------------------------------------------
 
-class CPUBlock():
+class CPUBlock(Module):
 
     csr_map       = {}
     interrupt_map = {}
@@ -539,9 +539,7 @@ class CPUBlock():
         self.check_if_exists("jtagbone")
         self.submodules.jtagbone_phy = JTAGPHY(device=self.platform.device, chain=chain)
         self.submodules.jtagbone = uart.UARTBone(phy=self.jtagbone_phy, clk_freq=self.sys_clk_freq)
-        self.bus.add_master(name="jtagbone", master=self.jtagbone.wishbone)
-
-            
+        self.bus.add_master(name="jtagbone", master=self.jtagbone.wishbone)        
             
 
     # SoC finalization -----------------------------------------------------------------------------
@@ -780,12 +778,17 @@ class AMP():
 		# Others
 		**kwargs):
 
+		#Attributes
 
 		self.platform = platform
 		self.sys_clk_freq = sys_clk_freq
-	
-		core0 = CPUBlock(self.platform, self.sys_clk_freq)
-		core1 = CPUBlock(self.platform, self.sys_clk_freq, **kwargs)
+		self.cpu_type = cpu_type
+		self.cpu_variant  = cpu_variant
+		self.wb_slaves = {}
+		self.mem_regions = self.bus.regions
+		
+		core0 = CPUBlock(self.platform, self.sys_clk_freq, cpu_type = self.cpu_type)
+		core1 = CPUBlock(self.platform, self.sys_clk_freq, cpu_type = self.cpu_type)
 		
 		# Memory regions for CPU 0
 		# ROM parameters
@@ -821,8 +824,8 @@ class AMP():
 		core0.config      = {}	
 		core0.wb_slaves = {}
 		
-		core1.mem_regions = Core1.bus.regions
-		core1.clk_freq    = Core1.sys_clk_freq
+		core1.mem_regions = core1.bus.regions
+		core1.clk_freq    = core1.sys_clk_freq
 		core1.config      = {}	
 		core1.wb_slaves = {}
 		
@@ -875,8 +878,8 @@ class AMP():
 		
 		core0.add_identifier("identifier", identifier=ident, with_build_time=ident_version)
 		core0.add_uart(name=core0.uart_name, baudrate=core0.uart_baudrate, fifo_depth=core0.uart_fifo_depth) #or add as a submodule?
-		uart_tx_core0 = platform.request("uart_tx")
-		uart_rx_core0 = platform.request("uart_rx")
+		#uart_tx_core0 = platform.request("uart_tx")
+		#uart_rx_core0 = platform.request("uart_rx")
 		core0.add_timer(name="timer0")
 		    
 		    
@@ -892,34 +895,57 @@ class AMP():
 			cfu           = None)
 		    
 		core1.add_rom("rom_core1",
-			origin   = Core1.cpu.reset_address,
-			size     = Core1.integrated_rom_size,
-			contents = Core1.integrated_rom_init,
-			mode     = Core1.integrated_rom_mode)
+			origin   = core1.cpu.reset_address,
+			size     = core1.integrated_rom_size,
+			contents = core1.integrated_rom_init,
+			mode     = core1.integrated_rom_mode)
 		    
 		core1.add_ram("sram_core1",
-			origin = Core1.mem_map["sram"],
-			size   = Core1.integrated_sram_size)
+			origin = core1.mem_map["sram"],
+			size   = core1.integrated_sram_size)
 		    
 		core1.add_ram("main_ram_core1",
-			origin = Core1.mem_map["main_ram"],
-			size   = Core1.integrated_main_ram_size,
-			contents = Core1.integrated_main_ram_init)
+			origin = core1.mem_map["main_ram"],
+			size   = core1.integrated_main_ram_size,
+			contents = core1.integrated_main_ram_init)
 		
 		core1.uart_name                = "serial"
 		core1.uart_baudrate            = 115200
 		core1.uart_fifo_depth          = 16
 		
 		core1.add_identifier("identifier", identifier=ident, with_build_time=ident_version)
-		#Core1.add_uart(name=Core1.uart_name, baudrate=Core1.uart_baudrate, fifo_depth=Core1.uart_fifo_depth) as submodule?
+		#Core1.add_uart(name=core1.uart_name, baudrate=core1.uart_baudrate, fifo_depth=core1.uart_fifo_depth) as submodule?
 		core1.add_timer(name="timer1")
 		
 		
-		self.comb += [
+		#self.comb += [
 		# UART connection
-	    	#Core0.uart_tx_core0.eq(Core1.uart_rx_core1),
-		#Core0.uart_rx_core0.eq(Core1.uart_tx_core1)
-        ]
+	    	#Core0.uart_tx_core0.eq(core1.uart_rx_core1),
+		#Core0.uart_rx_core0.eq(core1.uart_tx_core1)
+        #]
+        
+	# Finalization ---------------------------------------------------------------------------------
+
+	def finalize(self):
+		# Retro-compatibility
+		for address, interface in self.wb_slaves.items():
+		    wb_name = None
+		    for name, region in self.bus.regions.items():
+		        if address == region.origin:
+		            wb_name = name
+		            break
+		    self.bus.add_slave(name=wb_name, slave=interface)
+
+		SoC.do_finalize(self)
+		# Retro-compatibility
+		for region in self.bus.regions.values():
+		    region.length = region.size
+		    region.type   = "cached" if region.cached else "io"
+		    if region.linker:
+		        region.type += "+linker"
+		self.csr_regions = self.csr.regions
+		for name, value in self.config.items():
+		    self.add_config(name, value)
 
 soc = AMP(platform)
 
