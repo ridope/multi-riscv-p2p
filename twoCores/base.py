@@ -18,6 +18,16 @@ from litex.soc.cores.uart import UARTWishboneBridge
 from litex.soc.cores.cpu import *
 from litex.soc.integration.soc import *
 
+from litex.soc.cores import cpu
+
+from litex.soc.interconnect.csr import *
+from litex.soc.interconnect.csr_eventmanager import *
+from litex.soc.interconnect import csr_bus
+from litex.soc.interconnect import stream
+from litex.soc.interconnect import wishbone
+from litex.soc.interconnect import axi
+
+
 
 # IO's
 
@@ -769,14 +779,13 @@ class AMP():
 			
 		# Others
 		**kwargs):
-        
+
+
 		self.platform = platform
 		self.sys_clk_freq = sys_clk_freq
-
+	
 		core0 = CPUBlock(self.platform, self.sys_clk_freq)
-			
-		
-		core1 = CPUBlock(self.platform, self.sys_clk_freq)
+		core1 = CPUBlock(self.platform, self.sys_clk_freq, **kwargs)
 		
 		# Memory regions for CPU 0
 		# ROM parameters
