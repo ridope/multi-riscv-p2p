@@ -1,0 +1,639 @@
+Analysis & Synthesis report for top
+Thu Apr 28 11:25:55 2022
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. Registers Removed During Synthesis
+ 10. General Register Statistics
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Source assignments for altsyncram:storage_rtl_0|altsyncram_a2b1:auto_generated
+ 14. Parameter Settings for Inferred Entity Instance: altsyncram:storage_rtl_0
+ 15. altsyncram Parameter Settings by Entity Instance
+ 16. Post-Synthesis Netlist Statistics for Top Partition
+ 17. Elapsed Time Per Partition
+ 18. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Thu Apr 28 11:25:55 2022       ;
+; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                      ; top                                         ;
+; Top-level Entity Name              ; top                                         ;
+; Family                             ; MAX 10                                      ;
+; Total logic elements               ; 109                                         ;
+;     Total combinational functions  ; 100                                         ;
+;     Dedicated logic registers      ; 63                                          ;
+; Total registers                    ; 63                                          ;
+; Total pins                         ; 22                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 128                                         ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
+; UFM blocks                         ; 0                                           ;
+; ADC blocks                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; 10M50DAF484C7G     ;                    ;
+; Top-level entity name                                            ; top                ; top                ;
+; Family name                                                      ; MAX 10             ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 2           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
++----------------------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                  ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                              ; Library ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------+---------+
+; top.v                            ; yes             ; User SystemVerilog HDL File  ; /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v                             ; work    ;
+; mem_2.init                       ; yes             ; Auto-Found Unspecified File  ; /home/alexandre/multi-riscv-p2p/subCores/build/gateware/mem_2.init                        ;         ;
+; mem.init                         ; yes             ; Auto-Found Unspecified File  ; /home/alexandre/multi-riscv-p2p/subCores/build/gateware/mem.init                          ;         ;
+; mem_1.init                       ; yes             ; Auto-Found Unspecified File  ; /home/alexandre/multi-riscv-p2p/subCores/build/gateware/mem_1.init                        ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; /home/alexandre/intelFPGA_lite/18.1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; /home/alexandre/intelFPGA_lite/18.1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; /home/alexandre/intelFPGA_lite/18.1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; /home/alexandre/intelFPGA_lite/18.1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; aglobal181.inc                   ; yes             ; Megafunction                 ; /home/alexandre/intelFPGA_lite/18.1/quartus/libraries/megafunctions/aglobal181.inc        ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; /home/alexandre/intelFPGA_lite/18.1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; /home/alexandre/intelFPGA_lite/18.1/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; altram.inc                       ; yes             ; Megafunction                 ; /home/alexandre/intelFPGA_lite/18.1/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; /home/alexandre/intelFPGA_lite/18.1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_a2b1.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/alexandre/multi-riscv-p2p/subCores/build/gateware/db/altsyncram_a2b1.tdf            ;         ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+; Estimated Total logic elements              ; 109         ;
+;                                             ;             ;
+; Total combinational functions               ; 100         ;
+; Logic element usage by number of LUT inputs ;             ;
+;     -- 4 input functions                    ; 15          ;
+;     -- 3 input functions                    ; 14          ;
+;     -- <=2 input functions                  ; 71          ;
+;                                             ;             ;
+; Logic elements by mode                      ;             ;
+;     -- normal mode                          ; 66          ;
+;     -- arithmetic mode                      ; 34          ;
+;                                             ;             ;
+; Total registers                             ; 63          ;
+;     -- Dedicated logic registers            ; 63          ;
+;     -- I/O registers                        ; 0           ;
+;                                             ;             ;
+; I/O pins                                    ; 22          ;
+; Total memory bits                           ; 128         ;
+;                                             ;             ;
+; Embedded Multiplier 9-bit elements          ; 0           ;
+;                                             ;             ;
+; Maximum fan-out node                        ; clk50~input ;
+; Maximum fan-out                             ; 63          ;
+; Total fan-out                               ; 457         ;
+; Average fan-out                             ; 2.13        ;
++---------------------------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                         ;
++----------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node             ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                          ; Entity Name     ; Library Name ;
++----------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------------------------------+-----------------+--------------+
+; |top                                   ; 100 (100)           ; 63 (63)                   ; 128         ; 0          ; 0            ; 0       ; 0         ; 22   ; 0            ; 0          ; |top                                                         ; top             ; work         ;
+;    |altsyncram:storage_rtl_0|          ; 0 (0)               ; 0 (0)                     ; 128         ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top|altsyncram:storage_rtl_0                                ; altsyncram      ; work         ;
+;       |altsyncram_a2b1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 128         ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top|altsyncram:storage_rtl_0|altsyncram_a2b1:auto_generated ; altsyncram_a2b1 ; work         ;
++----------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------------------------------+-----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                       ;
++--------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; Name                                                               ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
++--------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; altsyncram:storage_rtl_0|altsyncram_a2b1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 16           ; 10           ; 16           ; 10           ; 160  ; None ;
++--------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+
+
++---------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                    ;
++----------------------------------------+----------------------------------------------+
+; Register name                          ; Reason for Removal                           ;
++----------------------------------------+----------------------------------------------+
+; __main___uart_tx_fifo_produce[0..3]    ; Stuck at GND due to stuck port data_in       ;
+; __main___leds_storage[0..8]            ; Stuck at GND due to stuck port data_in       ;
+; __main___uart_tx_fifo_level0[0]        ; Merged with __main___uart_tx_fifo_consume[0] ;
+; Total Number of Removed Registers = 14 ;                                              ;
++----------------------------------------+----------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 63    ;
+; Number of registers using Synchronous Clear  ; 4     ;
+; Number of registers using Synchronous Load   ; 1     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 24    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; builder_int_rst                        ; 13      ;
+; Total number of inverted registers = 1 ;         ;
++----------------------------------------+---------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------+
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___tx_count[3]            ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|__main___uart_tx_fifo_level0[4] ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |top|__main___tx_data[0]             ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |top|__main___uart_tx_fifo_consume   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------+
+
+
++--------------------------------------------------------------------------------+
+; Source assignments for altsyncram:storage_rtl_0|altsyncram_a2b1:auto_generated ;
++---------------------------------+--------------------+------+------------------+
+; Assignment                      ; Value              ; From ; To               ;
++---------------------------------+--------------------+------+------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                ;
++---------------------------------+--------------------+------+------------------+
+
+
++----------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: altsyncram:storage_rtl_0  ;
++------------------------------------+----------------------+----------------+
+; Parameter Name                     ; Value                ; Type           ;
++------------------------------------+----------------------+----------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped        ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY     ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY   ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE   ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped        ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped        ;
+; WIDTH_A                            ; 10                   ; Untyped        ;
+; WIDTHAD_A                          ; 4                    ; Untyped        ;
+; NUMWORDS_A                         ; 16                   ; Untyped        ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped        ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped        ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped        ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped        ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped        ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped        ;
+; WIDTH_B                            ; 10                   ; Untyped        ;
+; WIDTHAD_B                          ; 4                    ; Untyped        ;
+; NUMWORDS_B                         ; 16                   ; Untyped        ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped        ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped        ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped        ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped        ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped        ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped        ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped        ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped        ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped        ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped        ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped        ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped        ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped        ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped        ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped        ;
+; BYTE_SIZE                          ; 8                    ; Untyped        ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped        ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped        ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped        ;
+; INIT_FILE                          ; UNUSED               ; Untyped        ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped        ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped        ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped        ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped        ;
+; ENABLE_ECC                         ; FALSE                ; Untyped        ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped        ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped        ;
+; DEVICE_FAMILY                      ; MAX 10               ; Untyped        ;
+; CBXI_PARAMETER                     ; altsyncram_a2b1      ; Untyped        ;
++------------------------------------+----------------------+----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                     ;
++-------------------------------------------+--------------------------+
+; Name                                      ; Value                    ;
++-------------------------------------------+--------------------------+
+; Number of entity instances                ; 1                        ;
+; Entity Instance                           ; altsyncram:storage_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                ;
+;     -- WIDTH_A                            ; 10                       ;
+;     -- NUMWORDS_A                         ; 16                       ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED             ;
+;     -- WIDTH_B                            ; 10                       ;
+;     -- NUMWORDS_B                         ; 16                       ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                   ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED             ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                     ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                ;
++-------------------------------------------+--------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 22                          ;
+; cycloneiii_ff         ; 63                          ;
+;     ENA               ; 19                          ;
+;     ENA SCLR          ; 4                           ;
+;     ENA SLD           ; 1                           ;
+;     plain             ; 39                          ;
+; cycloneiii_lcell_comb ; 100                         ;
+;     arith             ; 34                          ;
+;         2 data inputs ; 34                          ;
+;     normal            ; 66                          ;
+;         0 data inputs ; 2                           ;
+;         1 data inputs ; 1                           ;
+;         2 data inputs ; 34                          ;
+;         3 data inputs ; 14                          ;
+;         4 data inputs ; 15                          ;
+; cycloneiii_ram_block  ; 8                           ;
+;                       ;                             ;
+; Max LUT depth         ; 5.00                        ;
+; Average LUT depth     ; 3.02                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:04     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+    Info: Copyright (C) 2018  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and its AMPP partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details.
+    Info: Processing started: Thu Apr 28 11:25:08 2022
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off top -c top
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file top.v
+    Info (12023): Found entity 1: top File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 20
+Info (12127): Elaborating entity "top" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at top.v(50): object "__main___soc_rst" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 50
+Warning (10036): Verilog HDL or VHDL warning at top.v(51): object "__main___cpu_rst" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 51
+Warning (10036): Verilog HDL or VHDL warning at top.v(55): object "__main___scratch_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 55
+Warning (10036): Verilog HDL or VHDL warning at top.v(57): object "__main___bus_errors_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 57
+Warning (10036): Verilog HDL or VHDL warning at top.v(58): object "__main___bus_errors_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 58
+Warning (10036): Verilog HDL or VHDL warning at top.v(63): object "__main___interface0_ram_bus_dat_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 63
+Warning (10036): Verilog HDL or VHDL warning at top.v(75): object "__main___interface1_ram_bus_dat_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 75
+Warning (10036): Verilog HDL or VHDL warning at top.v(87): object "__main___tx_sink_first" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 87
+Warning (10036): Verilog HDL or VHDL warning at top.v(88): object "__main___tx_sink_last" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 88
+Warning (10036): Verilog HDL or VHDL warning at top.v(96): object "__main___rx_source_ready" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 96
+Warning (10036): Verilog HDL or VHDL warning at top.v(112): object "__main___uart_txfull_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 112
+Warning (10036): Verilog HDL or VHDL warning at top.v(113): object "__main___uart_txfull_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 113
+Warning (10036): Verilog HDL or VHDL warning at top.v(115): object "__main___uart_rxempty_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 115
+Warning (10036): Verilog HDL or VHDL warning at top.v(116): object "__main___uart_rxempty_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 116
+Warning (10036): Verilog HDL or VHDL warning at top.v(117): object "__main___uart_irq" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 117
+Warning (10036): Verilog HDL or VHDL warning at top.v(131): object "__main___uart_status_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 131
+Warning (10036): Verilog HDL or VHDL warning at top.v(132): object "__main___uart_status_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 132
+Warning (10036): Verilog HDL or VHDL warning at top.v(136): object "__main___uart_pending_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 136
+Warning (10036): Verilog HDL or VHDL warning at top.v(139): object "__main___uart_tx2" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 139
+Warning (10036): Verilog HDL or VHDL warning at top.v(140): object "__main___uart_rx2" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 140
+Warning (10036): Verilog HDL or VHDL warning at top.v(142): object "__main___uart_enable_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 142
+Warning (10036): Verilog HDL or VHDL warning at top.v(144): object "__main___uart_txempty_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 144
+Warning (10036): Verilog HDL or VHDL warning at top.v(145): object "__main___uart_txempty_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 145
+Warning (10036): Verilog HDL or VHDL warning at top.v(147): object "__main___uart_rxfull_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 147
+Warning (10036): Verilog HDL or VHDL warning at top.v(148): object "__main___uart_rxfull_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 148
+Warning (10036): Verilog HDL or VHDL warning at top.v(182): object "__main___uart_tx_fifo_wrport_dat_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 182
+Warning (10036): Verilog HDL or VHDL warning at top.v(189): object "__main___uart_tx_fifo_level1" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 189
+Warning (10036): Verilog HDL or VHDL warning at top.v(203): object "__main___uart_rx_fifo_source_first" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 203
+Warning (10036): Verilog HDL or VHDL warning at top.v(204): object "__main___uart_rx_fifo_source_last" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 204
+Warning (10036): Verilog HDL or VHDL warning at top.v(219): object "__main___uart_rx_fifo_wrport_dat_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 219
+Warning (10036): Verilog HDL or VHDL warning at top.v(226): object "__main___uart_rx_fifo_level1" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 226
+Warning (10036): Verilog HDL or VHDL warning at top.v(234): object "__main___timer_load_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 234
+Warning (10036): Verilog HDL or VHDL warning at top.v(236): object "__main___timer_reload_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 236
+Warning (10036): Verilog HDL or VHDL warning at top.v(238): object "__main___timer_en_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 238
+Warning (10036): Verilog HDL or VHDL warning at top.v(242): object "__main___timer_value_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 242
+Warning (10036): Verilog HDL or VHDL warning at top.v(243): object "__main___timer_value_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 243
+Warning (10036): Verilog HDL or VHDL warning at top.v(244): object "__main___timer_irq" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 244
+Warning (10036): Verilog HDL or VHDL warning at top.v(252): object "__main___timer_status_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 252
+Warning (10036): Verilog HDL or VHDL warning at top.v(253): object "__main___timer_status_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 253
+Warning (10036): Verilog HDL or VHDL warning at top.v(256): object "__main___timer_pending_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 256
+Warning (10036): Verilog HDL or VHDL warning at top.v(259): object "__main___timer_zero2" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 259
+Warning (10036): Verilog HDL or VHDL warning at top.v(261): object "__main___timer_enable_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 261
+Warning (10036): Verilog HDL or VHDL warning at top.v(264): object "__main___leds_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 264
+Warning (10036): Verilog HDL or VHDL warning at top.v(266): object "__main___switches_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 266
+Warning (10036): Verilog HDL or VHDL warning at top.v(267): object "__main___switches_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 267
+Warning (10036): Verilog HDL or VHDL warning at top.v(269): object "__main___buttons_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 269
+Warning (10036): Verilog HDL or VHDL warning at top.v(270): object "__main___buttons_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 270
+Warning (10036): Verilog HDL or VHDL warning at top.v(272): object "__main___display1_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 272
+Warning (10036): Verilog HDL or VHDL warning at top.v(274): object "__main___display1_write_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 274
+Warning (10036): Verilog HDL or VHDL warning at top.v(275): object "__main___display1_write_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 275
+Warning (10036): Verilog HDL or VHDL warning at top.v(277): object "__main___display1_abcdefg0" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 277
+Warning (10036): Verilog HDL or VHDL warning at top.v(281): object "__main___display2_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 281
+Warning (10036): Verilog HDL or VHDL warning at top.v(283): object "__main___display2_write_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 283
+Warning (10036): Verilog HDL or VHDL warning at top.v(284): object "__main___display2_write_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 284
+Warning (10036): Verilog HDL or VHDL warning at top.v(286): object "__main___display2_abcdefg0" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 286
+Warning (10036): Verilog HDL or VHDL warning at top.v(290): object "__main___display3_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 290
+Warning (10036): Verilog HDL or VHDL warning at top.v(292): object "__main___display3_write_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 292
+Warning (10036): Verilog HDL or VHDL warning at top.v(293): object "__main___display3_write_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 293
+Warning (10036): Verilog HDL or VHDL warning at top.v(295): object "__main___display3_abcdefg0" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 295
+Warning (10036): Verilog HDL or VHDL warning at top.v(299): object "__main___display4_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 299
+Warning (10036): Verilog HDL or VHDL warning at top.v(301): object "__main___display4_write_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 301
+Warning (10036): Verilog HDL or VHDL warning at top.v(302): object "__main___display4_write_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 302
+Warning (10036): Verilog HDL or VHDL warning at top.v(304): object "__main___display4_abcdefg0" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 304
+Warning (10036): Verilog HDL or VHDL warning at top.v(308): object "__main___display5_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 308
+Warning (10036): Verilog HDL or VHDL warning at top.v(310): object "__main___display5_write_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 310
+Warning (10036): Verilog HDL or VHDL warning at top.v(311): object "__main___display5_write_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 311
+Warning (10036): Verilog HDL or VHDL warning at top.v(313): object "__main___display5_abcdefg0" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 313
+Warning (10036): Verilog HDL or VHDL warning at top.v(317): object "__main___display6_re" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 317
+Warning (10036): Verilog HDL or VHDL warning at top.v(319): object "__main___display6_write_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 319
+Warning (10036): Verilog HDL or VHDL warning at top.v(320): object "__main___display6_write_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 320
+Warning (10036): Verilog HDL or VHDL warning at top.v(322): object "__main___display6_abcdefg0" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 322
+Warning (10036): Verilog HDL or VHDL warning at top.v(345): object "builder_basesoc_wishbone_dat_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 345
+Warning (10036): Verilog HDL or VHDL warning at top.v(349): object "builder_basesoc_wishbone_ack" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 349
+Warning (10036): Verilog HDL or VHDL warning at top.v(356): object "builder_csr_bankarray_csrbank0_in_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 356
+Warning (10036): Verilog HDL or VHDL warning at top.v(366): object "builder_csr_bankarray_csrbank1_reset0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 366
+Warning (10036): Verilog HDL or VHDL warning at top.v(370): object "builder_csr_bankarray_csrbank1_scratch0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 370
+Warning (10036): Verilog HDL or VHDL warning at top.v(373): object "builder_csr_bankarray_csrbank1_bus_errors_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 373
+Warning (10036): Verilog HDL or VHDL warning at top.v(383): object "builder_csr_bankarray_csrbank2_value0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 383
+Warning (10036): Verilog HDL or VHDL warning at top.v(392): object "builder_csr_bankarray_csrbank3_value0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 392
+Warning (10036): Verilog HDL or VHDL warning at top.v(401): object "builder_csr_bankarray_csrbank4_value0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 401
+Warning (10036): Verilog HDL or VHDL warning at top.v(410): object "builder_csr_bankarray_csrbank5_value0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 410
+Warning (10036): Verilog HDL or VHDL warning at top.v(419): object "builder_csr_bankarray_csrbank6_value0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 419
+Warning (10036): Verilog HDL or VHDL warning at top.v(428): object "builder_csr_bankarray_csrbank7_value0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 428
+Warning (10036): Verilog HDL or VHDL warning at top.v(432): object "builder_csr_bankarray_sram_bus_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 432
+Warning (10036): Verilog HDL or VHDL warning at top.v(433): object "builder_csr_bankarray_sram_bus_dat_w" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 433
+Warning (10036): Verilog HDL or VHDL warning at top.v(445): object "builder_csr_bankarray_csrbank8_out0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 445
+Warning (10036): Verilog HDL or VHDL warning at top.v(453): object "builder_csr_bankarray_csrbank9_in_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 453
+Warning (10036): Verilog HDL or VHDL warning at top.v(463): object "builder_csr_bankarray_csrbank10_load0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 463
+Warning (10036): Verilog HDL or VHDL warning at top.v(467): object "builder_csr_bankarray_csrbank10_reload0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 467
+Warning (10036): Verilog HDL or VHDL warning at top.v(471): object "builder_csr_bankarray_csrbank10_en0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 471
+Warning (10036): Verilog HDL or VHDL warning at top.v(475): object "builder_csr_bankarray_csrbank10_update_value0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 475
+Warning (10036): Verilog HDL or VHDL warning at top.v(478): object "builder_csr_bankarray_csrbank10_value_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 478
+Warning (10036): Verilog HDL or VHDL warning at top.v(482): object "builder_csr_bankarray_csrbank10_ev_status_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 482
+Warning (10036): Verilog HDL or VHDL warning at top.v(491): object "builder_csr_bankarray_csrbank10_ev_enable0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 491
+Warning (10036): Verilog HDL or VHDL warning at top.v(499): object "builder_csr_bankarray_csrbank11_txfull_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 499
+Warning (10036): Verilog HDL or VHDL warning at top.v(503): object "builder_csr_bankarray_csrbank11_rxempty_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 503
+Warning (10036): Verilog HDL or VHDL warning at top.v(507): object "builder_csr_bankarray_csrbank11_ev_status_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 507
+Warning (10036): Verilog HDL or VHDL warning at top.v(516): object "builder_csr_bankarray_csrbank11_ev_enable0_we" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 516
+Warning (10036): Verilog HDL or VHDL warning at top.v(519): object "builder_csr_bankarray_csrbank11_txempty_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 519
+Warning (10036): Verilog HDL or VHDL warning at top.v(523): object "builder_csr_bankarray_csrbank11_rxfull_r" assigned a value but never read File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 523
+Warning (10230): Verilog HDL assignment warning at top.v(584): truncated value with size 8 to match size of target (1) File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 584
+Warning (10230): Verilog HDL assignment warning at top.v(1107): truncated value with size 30 to match size of target (14) File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 1107
+Warning (10850): Verilog HDL warning at top.v(2036): number of words (0) in memory file does not match the number of elements in the address range [0:2047] File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 2036
+Warning (10855): Verilog HDL warning at top.v(2035): initial value for variable mem should be constant File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 2035
+Warning (10850): Verilog HDL warning at top.v(2059): number of words (0) in memory file does not match the number of elements in the address range [0:2047] File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 2059
+Warning (10855): Verilog HDL warning at top.v(2058): initial value for variable mem_1 should be constant File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 2058
+Info (19000): Inferred 1 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "storage_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 10
+        Info (286033): Parameter WIDTHAD_A set to 4
+        Info (286033): Parameter NUMWORDS_A set to 16
+        Info (286033): Parameter WIDTH_B set to 10
+        Info (286033): Parameter WIDTHAD_B set to 4
+        Info (286033): Parameter NUMWORDS_B set to 16
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+Info (12130): Elaborated megafunction instantiation "altsyncram:storage_rtl_0"
+Info (12133): Instantiated megafunction "altsyncram:storage_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "10"
+    Info (12134): Parameter "WIDTHAD_A" = "4"
+    Info (12134): Parameter "NUMWORDS_A" = "16"
+    Info (12134): Parameter "WIDTH_B" = "10"
+    Info (12134): Parameter "WIDTHAD_B" = "4"
+    Info (12134): Parameter "NUMWORDS_B" = "16"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_a2b1.tdf
+    Info (12023): Found entity 1: altsyncram_a2b1 File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/db/altsyncram_a2b1.tdf Line: 27
+Warning (14284): Synthesized away the following node(s):
+    Warning (14285): Synthesized away the following RAM node(s):
+        Warning (14320): Synthesized away node "altsyncram:storage_rtl_0|altsyncram_a2b1:auto_generated|ram_block1a8" File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/db/altsyncram_a2b1.tdf Line: 260
+        Warning (14320): Synthesized away node "altsyncram:storage_rtl_0|altsyncram_a2b1:auto_generated|ram_block1a9" File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/db/altsyncram_a2b1.tdf Line: 288
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "user_led0" is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 23
+    Warning (13410): Pin "user_led1" is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 24
+    Warning (13410): Pin "user_led2" is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 25
+    Warning (13410): Pin "user_led3" is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 26
+    Warning (13410): Pin "user_led4" is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 27
+    Warning (13410): Pin "user_led5" is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 28
+    Warning (13410): Pin "user_led6" is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 29
+    Warning (13410): Pin "user_led7" is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 30
+    Warning (13410): Pin "user_led8" is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 31
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (15400): WYSIWYG primitive "altsyncram:storage_rtl_0|altsyncram_a2b1:auto_generated|ram_block1a0" has a port clk0 that is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/db/altsyncram_a2b1.tdf Line: 36
+Warning (15400): WYSIWYG primitive "altsyncram:storage_rtl_0|altsyncram_a2b1:auto_generated|ram_block1a1" has a port clk0 that is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/db/altsyncram_a2b1.tdf Line: 64
+Warning (15400): WYSIWYG primitive "altsyncram:storage_rtl_0|altsyncram_a2b1:auto_generated|ram_block1a2" has a port clk0 that is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/db/altsyncram_a2b1.tdf Line: 92
+Warning (15400): WYSIWYG primitive "altsyncram:storage_rtl_0|altsyncram_a2b1:auto_generated|ram_block1a3" has a port clk0 that is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/db/altsyncram_a2b1.tdf Line: 120
+Warning (15400): WYSIWYG primitive "altsyncram:storage_rtl_0|altsyncram_a2b1:auto_generated|ram_block1a4" has a port clk0 that is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/db/altsyncram_a2b1.tdf Line: 148
+Warning (15400): WYSIWYG primitive "altsyncram:storage_rtl_0|altsyncram_a2b1:auto_generated|ram_block1a5" has a port clk0 that is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/db/altsyncram_a2b1.tdf Line: 176
+Warning (15400): WYSIWYG primitive "altsyncram:storage_rtl_0|altsyncram_a2b1:auto_generated|ram_block1a6" has a port clk0 that is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/db/altsyncram_a2b1.tdf Line: 204
+Warning (15400): WYSIWYG primitive "altsyncram:storage_rtl_0|altsyncram_a2b1:auto_generated|ram_block1a7" has a port clk0 that is stuck at GND File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/db/altsyncram_a2b1.tdf Line: 232
+Warning (21074): Design contains 11 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "serial_rx" File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 22
+    Warning (15610): No output dependent on input pin "user_sw0" File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 32
+    Warning (15610): No output dependent on input pin "user_sw1" File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 33
+    Warning (15610): No output dependent on input pin "user_sw2" File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 34
+    Warning (15610): No output dependent on input pin "user_sw3" File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 35
+    Warning (15610): No output dependent on input pin "user_sw4" File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 36
+    Warning (15610): No output dependent on input pin "user_sw5" File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 37
+    Warning (15610): No output dependent on input pin "user_sw6" File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 38
+    Warning (15610): No output dependent on input pin "user_sw7" File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 39
+    Warning (15610): No output dependent on input pin "user_sw8" File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 40
+    Warning (15610): No output dependent on input pin "user_btn0" File: /home/alexandre/multi-riscv-p2p/subCores/build/gateware/top.v Line: 41
+Info (21057): Implemented 143 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 12 input pins
+    Info (21059): Implemented 10 output pins
+    Info (21061): Implemented 113 logic cells
+    Info (21064): Implemented 8 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 141 warnings
+    Info: Peak virtual memory: 1188 megabytes
+    Info: Processing ended: Thu Apr 28 11:25:55 2022
+    Info: Elapsed time: 00:00:47
+    Info: Total CPU time (on all processors): 00:00:43
+
+
