@@ -114,7 +114,7 @@ class Platform(AlteraPlatform):
 # Design -------------------------------------------------------------------------------------------
 
 # Create our platform (fpga interface)
-#platform = Platform()
+platform = Platform()
 
 
 
@@ -142,7 +142,7 @@ class BaseSoC(SoCMini):
         "csr": 0x10000000,
     }}
     def __init__(self, platform, toolchain="quartus", sys_clk_freq=int(50e6), with_led_chaser=True):
-        platform = Platform(toolchain = toochain) #(toolchain = toolchain)
+        platform = Platform() #(toolchain = toolchain)
 
         # CRG --------------------------------------------------------------------------------------
         self.submodules.crg = _CRG(platform, sys_clk_freq)
@@ -266,30 +266,37 @@ class BaseSoC(SoCMini):
         self.bus.add_master(master=mmap_wb)
 
 
-def main(): # Instanciating the SoC and options
-    parser = argparse.ArgumentParser(description="LiteX SoC on DE10-Lite")
-    parser.add_argument("--build",               action="store_true", help="Build bitstream")
-    parser.add_argument("--load",                action="store_true", help="Load bitstream")
-    parser.add_argument("--sys-clk-freq",        default=50e6,        help="System clock frequency (default: 50MHz)")
+# Build --------------------------------------------------------------------------------------------
+
+def main():
+    from litex.soc.integration.soc import LiteXSoCArgumentParser
+    parser = LiteXSoCArgumentParser(description="LiteX standalone SoC generator")
+    target_group = parser.add_argument_group(title="Target options")
+    target_group.add_argument("--toolchain",    default="quartus",    help="FPGA toolchain")
+    target_group.add_argument("--build",        action="store_true", help="Build bitstream.")
+    target_group.add_argument("--load",         action="store_true", help="Load bitstream.")
+    target_group.add_argument("--flash",        action="store_true", help="Flash bitstream.")
+    target_group.add_argument("--sys-clk-freq", default=50e6,       help="System clock frequency.")
     builder_args(parser)
-    soc_core_args(parser)
     args = parser.parse_args()
 
     soc = BaseSoC(
-        sys_clk_freq        = int(float(args.sys_clk_freq)),
-        **soc_core_argdict(args)
+    	platform       = Platform(),
+        toolchain      = args.toolchain,
+        sys_clk_freq   = int(float(args.sys_clk_freq)),
     )
-    builder = Builder(soc, **builder_argdict(args))
-    builder.build(run=args.build)
-    soc.do_exit(builder)
-    generate_docs(soc, "build/documentation",
-                        project_name="My SoC",
-                        author="LiteX User")
-    generate_svd(soc, "build/documentation")
 
-    if args.load:
-        prog = soc.platform.create_programmer()
-        prog.load_bitstream(os.path.join(builder.gateware_dir, soc.build_name + ".sof"))
+    builder = Builder(soc, **builder_argdict(args))
+    builder_kwargs = {}
+    builder.build(**builder_kwargs, run=args.build)
+
+#    if args.load:
+#        prog = soc.platform.create_programmer()
+#        prog.load_bitstream(builder.get_bitstream_filename(mode="sram"))
+
+#    if args.flash:
+#        prog = soc.platform.create_programmer()
+#        prog.flash(0, builder.get_bitstream_filename(mode="flash"))
 
 if __name__ == "__main__":
     main()
