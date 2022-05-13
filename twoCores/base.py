@@ -17,8 +17,7 @@ from litex.soc.integration.soc import SoCRegion
 from litex.soc.integration.soc_core import *
 from litex.soc.integration.builder import *
 from litex.soc.cores.led import LedChaser
-from litex.soc.cores.uart import *
-from litex_boards.platforms import de10lite 
+from litex.soc.cores.uart import * 
 
 from litex.build.generic_platform import *
 from migen.genlib.io import CRG
@@ -115,7 +114,7 @@ class Platform(AlteraPlatform):
 # Design -------------------------------------------------------------------------------------------
 
 # Create our platform (fpga interface)
-platform = Platform()
+#platform = Platform()
 
 
 
@@ -142,22 +141,26 @@ class BaseSoC(SoCMini):
     mem_map = {**SoCCore.mem_map, **{
         "csr": 0x10000000,
     }}
-    def __init__(self, platform, sys_clk_freq=int(50e6), with_led_chaser=True):
+    def __init__(self, platform, toolchain="quartus", sys_clk_freq=int(50e6), with_led_chaser=True):
+        platform = Platform(toolchain = toochain) #(toolchain = toolchain)
 
         # CRG --------------------------------------------------------------------------------------
         self.submodules.crg = _CRG(platform, sys_clk_freq)
 
         # SoCMini ----------------------------------------------------------------------------------
-        SoCMini.__init__(self, platform, sys_clk_freq, ident="LiteX standalone SoC generator")
+        SoCMini.__init__(self, platform, sys_clk_freq, ident="LiteX standalone SoC generator on Arty A7")
 
         # JTAGBone ---------------------------------------------------------------------------------
-       # self.add_jtagbone() #necessary?
+        self.add_jtagbone()
 
         # Leds -------------------------------------------------------------------------------------
         if with_led_chaser:
             self.submodules.leds = LedChaser(
                 pads         = platform.request_all("user_led"),
                 sys_clk_freq = sys_clk_freq)
+
+
+        # Standalone SoC Generation/Re-Integration -------------------------------------------------
 
 
         # Standalone SoC Generation/Re-Integration -------------------------------------------------
