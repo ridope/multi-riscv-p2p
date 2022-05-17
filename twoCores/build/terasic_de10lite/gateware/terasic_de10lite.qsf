@@ -1,0 +1,43 @@
+set_global_assignment -name DEVICE 10M50DAF484C7G
+set_global_assignment -name SYSTEMVERILOG_FILE /home/alexandre/multi-riscv-p2p/twoCores/build/femtorv_soc/gateware/femtorv_soc.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE /home/alexandre/multi-riscv-p2p/twoCores/femtorv32_quark.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE /home/alexandre/multi-riscv-p2p/twoCores/build/firev_soc/gateware/firev_soc.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE /home/alexandre/multi-riscv-p2p/twoCores/firev.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE /home/alexandre/multi-riscv-p2p/twoCores/build/terasic_de10lite/gateware/terasic_de10lite.v -library work
+set_global_assignment -name SEARCH_PATH /home/alexandre/multi-riscv-p2p/twoCores
+set_global_assignment -name SEARCH_PATH /home/alexandre/multi-riscv-p2p/twoCores
+set_global_assignment -name top_level_entity terasic_de10lite
+set_location_assignment -comment "clk50:0" -to clk50 Pin_P11
+set_instance_assignment -name io_standard -comment "clk50:0" "3.3-V LVTTL" -to clk50
+set_location_assignment -comment "user_led:0" -to user_led0 Pin_A8
+set_instance_assignment -name io_standard -comment "user_led:0" "3.3-V LVTTL" -to user_led0
+set_location_assignment -comment "user_led:1" -to user_led1 Pin_A9
+set_instance_assignment -name io_standard -comment "user_led:1" "3.3-V LVTTL" -to user_led1
+set_location_assignment -comment "user_led:2" -to user_led2 Pin_A10
+set_instance_assignment -name io_standard -comment "user_led:2" "3.3-V LVTTL" -to user_led2
+set_location_assignment -comment "user_led:3" -to user_led3 Pin_B10
+set_instance_assignment -name io_standard -comment "user_led:3" "3.3-V LVTTL" -to user_led3
+set_location_assignment -comment "user_led:4" -to user_led4 Pin_D13
+set_instance_assignment -name io_standard -comment "user_led:4" "3.3-V LVTTL" -to user_led4
+set_location_assignment -comment "user_led:5" -to user_led5 Pin_C13
+set_instance_assignment -name io_standard -comment "user_led:5" "3.3-V LVTTL" -to user_led5
+set_location_assignment -comment "user_led:6" -to user_led6 Pin_E14
+set_instance_assignment -name io_standard -comment "user_led:6" "3.3-V LVTTL" -to user_led6
+set_location_assignment -comment "user_led:7" -to user_led7 Pin_D14
+set_instance_assignment -name io_standard -comment "user_led:7" "3.3-V LVTTL" -to user_led7
+set_location_assignment -comment "user_led:8" -to user_led8 Pin_A11
+set_instance_assignment -name io_standard -comment "user_led:8" "3.3-V LVTTL" -to user_led8
+set_location_assignment -comment "user_led:9" -to user_led9 Pin_B11
+set_instance_assignment -name io_standard -comment "user_led:9" "3.3-V LVTTL" -to user_led9
+set_location_assignment -comment "serial:0.tx" -to serial_tx Pin_V10
+set_instance_assignment -name io_standard -comment "serial:0.tx" "3.3-V LVTTL" -to serial_tx
+set_location_assignment -comment "serial:0.rx" -to serial_rx Pin_W10
+set_instance_assignment -name io_standard -comment "serial:0.rx" "3.3-V LVTTL" -to serial_rx
+set_location_assignment -comment "user_sw:0" -to user_sw0 Pin_C10
+set_instance_assignment -name io_standard -comment "user_sw:0" "3.3-V LVTTL" -to user_sw0
+set_global_assignment -name FAMILY "MAX 10"
+
+set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
+
+set_global_assignment -name INTERNAL_FLASH_UPDATE_MODE "SINGLE IMAGE WITH ERAM"
+set_global_assignment -name SDC_FILE terasic_de10lite.sdc

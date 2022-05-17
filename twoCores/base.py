@@ -8,6 +8,7 @@ import argparse
 
 from litex.build.altera import AlteraPlatform
 from litex.build.altera.programmer import USBBlaster
+from litex_boards.platforms import terasic_de10lite
 
 #from litex_boards.platforms import digilent_arty
 #from litex.build.xilinx.vivado import vivado_build_args, vivado_build_argdict
@@ -18,6 +19,7 @@ from litex.soc.integration.soc_core import *
 from litex.soc.integration.builder import *
 from litex.soc.cores.led import LedChaser
 from litex.soc.cores.uart import * 
+from litex.build.generic_platform import *
 
 from litex.build.generic_platform import *
 from migen.genlib.io import CRG
@@ -103,18 +105,18 @@ _io = [
 
 # Platform
 
-class Platform(AlteraPlatform):
-	default_clk_name = "clk50"
-	default_clk_period = 1e9/50e6
-	create_rbf = False
-	
-	def __init__(self):
-        	AlteraPlatform.__init__(self, "10M50DAF484C7G", _io)
+#class Platform(AlteraPlatform):
+#	default_clk_name = "clk50"
+#	default_clk_period = 1e9/50e6
+#	create_rbf = False
+#	
+#	def __init__(self):
+#        	AlteraPlatform.__init__(self, "10M50DAF484C7G", _io)
         	
 # Design -------------------------------------------------------------------------------------------
 
 # Create our platform (fpga interface)
-platform = Platform()
+#platform = Platform()
 
 
 
@@ -142,7 +144,7 @@ class BaseSoC(SoCMini):
         "csr": 0x10000000,
     }}
     def __init__(self, platform, toolchain="quartus", sys_clk_freq=int(50e6), with_led_chaser=True):
-        platform = Platform() #(toolchain = toolchain)
+        platform = terasic_de10lite.Platform() #(toolchain = toolchain)
 
         # CRG --------------------------------------------------------------------------------------
         self.submodules.crg = _CRG(platform, sys_clk_freq)
@@ -278,21 +280,22 @@ def main():
     target_group.add_argument("--flash",        action="store_true", help="Flash bitstream.")
     target_group.add_argument("--sys-clk-freq", default=50e6,       help="System clock frequency.")
     builder_args(parser)
+    soc_core_args(parser)
     args = parser.parse_args()
 
     soc = BaseSoC(
-    	platform       = Platform(),
         toolchain      = args.toolchain,
         sys_clk_freq   = int(float(args.sys_clk_freq)),
+        platform = terasic_de10lite.Platform()
     )
 
     builder = Builder(soc, **builder_argdict(args))
     builder_kwargs = {}
     builder.build(**builder_kwargs, run=args.build)
 
-#    if args.load:
-#        prog = soc.platform.create_programmer()
-#        prog.load_bitstream(builder.get_bitstream_filename(mode="sram"))
+    if args.load:
+        prog = soc.platform.create_programmer()
+        prog.load_bitstream(builder.get_bitstream_filename(mode="sram"))
 
 #    if args.flash:
 #        prog = soc.platform.create_programmer()
